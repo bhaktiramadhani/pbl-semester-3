@@ -1,5 +1,5 @@
 <?php
-include('config/koneksi.php');
+require 'functions.php';
 session_start();
 
 if (isset($_SESSION['status']) == "login") {
@@ -22,11 +22,9 @@ if (isset($_POST['submit'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
-    $data = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+    $data = query("SELECT * FROM users WHERE username='$username' AND password='$password'");
 
-    $cek = mysqli_num_rows($data);
-
-    if ($cek > 0) {
+    if (!empty($data)) {
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['status'] = "login";
