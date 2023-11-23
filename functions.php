@@ -29,3 +29,10 @@ function tambah($data)
     mysqli_query($koneksi, $queryTambah);
     return mysqli_affected_rows($koneksi);
 }
+
+function hapus($id)
+{
+    global $koneksi;
+    mysqli_query($koneksi, "DELETE FROM products WHERE id = $id");
+    return mysqli_affected_rows($koneksi);
+}
