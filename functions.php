@@ -119,6 +119,6 @@ function edit($data)
 
 function cari($keyword)
 {
-    $query = "SELECT * FROM products WHERE name LIKE '%$keyword%' OR description LIKE '%$keyword%' OR price LIKE '%$keyword%'";
+    $query = "SELECT * FROM products WHERE name LIKE '%$keyword%' OR description LIKE '%$keyword%' OR price LIKE '%$keyword%' OR category LIKE '%$keyword%'";
     return query($query);
 }

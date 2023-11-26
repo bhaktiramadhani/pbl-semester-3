@@ -4,9 +4,9 @@ require '../functions.php';
 if (isset($_POST['edit'])) {
     if (edit($_POST) > 0) {
         echo '<script>alert("data berhasil diubah")</script>';
-        header("refresh:0;url=../dashboard.php");
+        header("refresh:0;url=../products.php");
     } else {
         echo '<script>alert("data gagal diubah")</script>';
-        header("refresh:0;url=../dashboard.php");
+        header("refresh:0;url=../products.php");
     }
 }
