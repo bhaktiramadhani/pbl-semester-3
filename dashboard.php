@@ -8,27 +8,8 @@ if ($_SESSION['status'] != "login") {
 // mengambil semua data
 $products = query("SELECT * FROM products");
 
-// fungsi nambah data
-if (isset($_POST['submit'])) {
-    if (tambah($_POST) > 0) {
-        echo '<script>alert("data berhasil ditambah")</script>';
-        header("refresh:0;url=dashboard.php");
-    } else {
-        echo '<script>alert("data gagal ditambah")</script>';
-        header("refresh:0;url=dashboard.php");
-    }
-}
-
-
-// fungsi hapus
-if (isset($_GET['id'])) {
-    if (hapus($_GET['id']) > 0) {
-        echo '<script>alert("data berhasil dihapus")</script>';
-        header("refresh:0;url=dashboard.php");
-    } else {
-        echo '<script>alert("data gagal dihapus")</script>';
-        header("refresh:0;url=dashboard.php");
-    }
+if (isset($_GET['keyword'])) {
+    $products = cari($_GET['keyword']);
 }
 
 
@@ -124,57 +105,20 @@ if (isset($_GET['id'])) {
                     <div class="pb-4 bg-white dark:bg-gray-900">
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative mt-1 flex flex-wrap justify-between gap-4">
-                            <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+                            <form action="dashboard.php" method="get" class="flex flex-wrap gap-4">
+                                <input type="text" id="table-search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off">
+                                <!-- <button type="submit" name="cari" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out">Cari Produk</button> -->
+                            </form>
                             <button data-modal-target="add-modal" data-modal-toggle="add-modal" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out">Tambah Produk</button>
                         </div>
                     </div>
-                    <!-- Main modal -->
-                    <div id="add-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div class="relative p-4 w-full max-w-2xl max-h-full">
-                            <!-- Modal content -->
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                <!-- Modal header -->
-                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                        Tambah Produk
-                                    </h3>
-                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="add-modal">
-                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                        </svg>
-                                        <span class="sr-only">Close modal</span>
-                                    </button>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="p-4 md:p-5 space-y-4">
-                                    <form action="dashboard.php" method="post">
-                                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                                            <div class="sm:col-span-2">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
-                                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nama..." required="">
-                                            </div>
-                                            <div class="sm:col-span-2">
-                                                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
-                                                <input type="text" name="image" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="gambar..." required="">
-                                            </div>
-                                            <div class="w-full">
-                                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                                <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rp. xx.xxx" required="">
-                                            </div>
-                                            <div class="sm:col-span-2">
-                                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                <textarea id="description" name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="deskripsi..."></textarea>
-                                            </div>
-                                        </div>
-                                        <button type="submit" name="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-brown rounded-lg hover:bg-brownHover transition-all duration-200 ease-in-out">Tambah Produk</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    No
+                                </th>
                                 <th scope="col" class="px-6 py-3">
                                     Nama Produk
                                 </th>
@@ -188,13 +132,20 @@ if (isset($_GET['id'])) {
                                     Price
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Kategori
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $id = 1; ?>
                             <?php foreach ($products as $product) : ?>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <?= $id; ?>
+                                    </th>
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <?= $product['name']; ?>
                                     </th>
@@ -207,45 +158,141 @@ if (isset($_GET['id'])) {
                                     <td class="px-6 py-4">
                                         Rp. <?= number_format($product['price'], 0, ',', '.') ?>
                                     </td>
+                                    <td class="px-6 py-4">
+                                        <?= $product['category']; ?>
+                                    </td>
                                     <td class="px-6 py-4 space-y-2">
-                                        <a href="#" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block">Edit</a>
-                                        <a href="dashboard.php?id=<?= $product['id'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus produk ini?')" class="font-medium text-white bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg inline-block">Hapus</a>
+                                        <a href="#" data-modal-target="edit-modal<?php echo $product['id']; ?>" data-modal-toggle="edit-modal<?php echo $product['id']; ?>" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block">Edit</a>
+                                        <a href="handler/hapus_data.php?hapus=<?= $product['id'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus produk ini?')" class="font-medium text-white bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg inline-block">Hapus</a>
                                     </td>
                                 </tr>
+                                <div id="edit-modal<?php echo $product['id']; ?>" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                        <!-- Modal content -->
+                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                            <!-- Modal header -->
+                                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                                    Edit Produk
+                                                </h3>
+                                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit-modal<?php echo $product['id']; ?>">
+                                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                    </svg>
+                                                    <span class="sr-only">Close modal</span>
+                                                </button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="p-4 md:p-5 space-y-4">
+                                                <form action="handler/edit_data.php" method="post" enctype="multipart/form-data">
+                                                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                                                        <input type="hidden" name="id" value="<?= $product['id']; ?>">
+                                                        <input type="hidden" name="gambarLama" value="<?= $product['image']; ?>">
+                                                        <div class="sm:col-span-2">
+                                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
+                                                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nama..." required="" value="<?= $product['name']; ?>">
+                                                        </div>
+                                                        <div class="sm:col-span-2">
+                                                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
+                                                            <img src="assets/images/<?= $product['image'] ?>" alt="" height="100" width="250" class="my-4">
+                                                            <input id="file_input" type="file" name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help">
+                                                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPG, JPEG, PNG (MAX. 2MB).</p>
+                                                        </div>
+                                                        <div class="sm:col-span-2">
+                                                            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+                                                            <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                <option selected disabled>Pilih Kategori</option>
+                                                                <option value="Ekonomis + Ekonomis">Ekonomis + Ekonomis</option>
+                                                                <option value="Medium + Medium">Medium + Medium</option>
+                                                                <option value="Premium + Premium">Premium + Premium</option>
+                                                                <option value="Ekonomis + Medium">Ekonomis + Medium</option>
+                                                                <option value="Ekonomis + Premium">Ekonomis + Premium</option>
+                                                                <option value="Medium + Premium">Medium + Premium</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                                            <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rp. xx.xxx" required="" value="<?= $product['price'] ?>">
+                                                        </div>
+                                                        <div class="sm:col-span-2">
+                                                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                            <textarea id="description" name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="deskripsi..."><?= $product['description']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" name="edit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-brown rounded-lg hover:bg-brownHover transition-all duration-200 ease-in-out">Edit Produk</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php $id++; ?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+
                 </div>
+
             </section>
 
-
-            <!-- <section class="bg-white dark:bg-gray-900" id="tambah" role="tabpanel" aria-labelledby="tambah-tab">
-                <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah Produk</h2>
-                    <form action="dashboard.php" method="post">
-                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                            <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
-                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nama..." required="">
-                            </div>
-                            <div class="sm:col-span-2">
-                                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
-                                <input type="text" name="image" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="gambar..." required="">
-                            </div>
-                            <div class="w-full">
-                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rp. xx.xxx" required="">
-                            </div>
-                            <div class="sm:col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                <textarea id="description" name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="deskripsi..."></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" name="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-brown rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">Tambah Produk</button>
-                    </form>
-                </div>
-            </section> -->
         </div>
+        <!-- Main modal tambah produk -->
+        <div id="add-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            Tambah Produk
+                        </h3>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="add-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-4 md:p-5 space-y-4">
+                        <form action="handler/tambah_data.php" method="post" enctype="multipart/form-data">
+                            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                                <div class="sm:col-span-2">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
+                                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nama..." required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
+                                    <input id="file_input" type="file" name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help">
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPG, JPEG, PNG (MAX. 2MB).</p>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+                                    <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected disabled>Pilih Kategori</option>
+                                        <option value="Ekonomis + Ekonomis">Ekonomis + Ekonomis</option>
+                                        <option value="Medium + Medium">Medium + Medium</option>
+                                        <option value="Premium + Premium">Premium + Premium</option>
+                                        <option value="Ekonomis + Medium">Ekonomis + Medium</option>
+                                        <option value="Ekonomis + Premium">Ekonomis + Premium</option>
+                                        <option value="Medium + Premium">Medium + Premium</option>
+                                    </select>
+                                </div>
+                                <div class="w-full">
+                                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                    <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rp. xx.xxx" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                    <textarea id="description" name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="deskripsi..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" name="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-brown rounded-lg hover:bg-brownHover transition-all duration-200 ease-in-out">Tambah Produk</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="node_modules/flowbite/dist/flowbite.js"></script>
