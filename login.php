@@ -2,19 +2,18 @@
 require 'functions.php';
 session_start();
 
+$pesan = "";
 if (isset($_SESSION['status']) == "login") {
-    return header("location: dashboard.php");
+    header("location: dashboard.php");
 }
 
-
-$pesan = "";
 if (isset($_GET['pesan'])) {
     if ($_GET['pesan'] == 'logout') {
         $pesan = "Anda Telah Logout";
-    } else if ($_GET['pesan'] == 'gagal') {
-        $pesan = "Username atau Password anda salah";
     } else if ($_GET['pesan'] == 'belum_login') {
         $pesan = "Anda harus login dulu";
+    } else if ($_GET['pesan'] === 'ubah_password') {
+        $pesan = "Password Berhasil diubah silahkan login kembali";
     }
 }
 
@@ -22,16 +21,18 @@ if (isset($_POST['submit'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
-    $data = query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+    $result = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'");
 
-    if (!empty($data)) {
-        session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['status'] = "login";
-        header("location: dashboard.php");
-    } else {
-        header("location: login.php?pesan=gagal");
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['username'] = $username;
+            $_SESSION['status'] = "login";
+            header("location: dashboard.php");
+            exit;
+        }
     }
+    $pesan = 'Username / Password salah';
 }
 
 
@@ -55,6 +56,7 @@ if (isset($_POST['submit'])) {
                 <img src="assets/images/logo-chemaraya.svg" alt="logo chemaraya" width="200">
             </a>
         </div>
+        <h1 class="font-bold mb-4 text-2xl">Login</h1>
         <a href="index.php" class="self-start flex gap-2 items-center  rounded-md mb-4 group" data-tooltip-target="tooltip-to-home">
             <img src="assets/images/icons/arrow-back.svg" alt="panah kembali" width="30" class="group-hover:-translate-x-1.5 transition-all duration-400 ease-in">
             Kembali ke Beranda
@@ -75,6 +77,7 @@ if (isset($_POST['submit'])) {
             </div>
 
             <button type="submit" class="text-white bg-brown hover:bg-brownHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-200 ease-in-out" name="submit">Login</button>
+            <a href="forgot-password.php" class="self-end mt-4 font-normal underline underline-offset-4 hover:no-underline text-sm">Lupa Password</a>
         </form>
         <a href="register.php" class="self-start mt-4 font-normal underline underline-offset-4 hover:no-underline text-sm">Ke halaman Register</a>
     </div>

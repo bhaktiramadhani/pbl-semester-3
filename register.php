@@ -24,6 +24,7 @@ if (isset($_POST['submit'])) {
                 <img src="assets/images/logo-chemaraya.svg" alt="logo chemaraya" width="200">
             </a>
         </div>
+        <h1 class="font-bold mb-4 text-2xl">Register</h1>
         <a href="index.php" class="self-start flex gap-2 items-center  rounded-md mb-4 group" data-tooltip-target="tooltip-to-home">
             <img src="assets/images/icons/arrow-back.svg" alt="panah kembali" width="30" class="group-hover:-translate-x-1.5 transition-all duration-400 ease-in">
             Kembali ke Beranda

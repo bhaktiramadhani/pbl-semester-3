@@ -8,6 +8,9 @@ if ($_SESSION['status'] != "login") {
 // mengambil semua data
 $products = query("SELECT * FROM products");
 
+//mengambil data category
+$categorys = query("SELECT * FROM category");
+
 if (isset($_GET['keyword'])) {
     $products = cari($_GET['keyword']);
 }
@@ -15,7 +18,15 @@ if (isset($_GET['keyword'])) {
 // mendapatkan panjang array
 function getCount($category)
 {
-    return count(query("SELECT * FROM products WHERE category = '$category'"));
+    $category_name = $category['category_name'];
+    return count(query("SELECT * FROM products WHERE category = '$category_name'"));
+}
+
+function getLink($category)
+{
+    $category_name = explode(' + ', $category);
+    $category_name = implode(' %2B ', $category_name);
+    return $category_name;
 }
 
 
@@ -134,78 +145,21 @@ function getCount($category)
                                 <p>Selengkapnya</p>
                             </div>
                         </a>
-                        <a href='products.php?keyword=Ekonomis+%2B+Ekonomis' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= getCount('Ekonomis + Ekonomis'); ?></span>
-                                    <p class="font-bold text-xs">Ekonomis + Ekonomis</p>
+                        <?php foreach ($categorys as $category) : ?>
+
+                            <a href='products.php?keyword=<?= getLink($category['category_name']) ?>' class="w-60 h-auto">
+                                <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
+                                    <div>
+                                        <span class="font-bold text-lg"><?= getCount($category); ?></span>
+                                        <p class="font-bold text-xs"><?= $category['category_name']; ?></p>
+                                    </div>
+                                    <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
                                 </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
-                        <a href='products.php?keyword=Medium+%2B+Medium' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= getCount('Medium + Medium'); ?></span>
-                                    <p class="font-bold text-xs">Medium + Medium</p>
+                                <div class="bg-black text-white text-center py-2 rounded-b-md">
+                                    <p>Selengkapnya</p>
                                 </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
-                        <a href='products.php?keyword=Premium+%2B+Premium' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= getCount('Premium + Premium'); ?></span>
-                                    <p class="font-bold text-xs">Premium + Premium</p>
-                                </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
-                        <a href='products.php?keyword=Ekonomis+%2B+Medium' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= getCount('Ekonomis + Medium'); ?></span>
-                                    <p class="font-bold text-xs">Ekonomis + Medium</p>
-                                </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
-                        <a href='products.php?keyword=Ekonomis+%2B+Premium' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= getCount('Ekonomis + Premium'); ?></span>
-                                    <p class="font-bold text-xs">Ekonomis + Premium</p>
-                                </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
-                        <a href='products.php?keyword=Medium+%2B+Premium' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= getCount('Medium + Premium'); ?></span>
-                                    <p class="font-bold text-xs">Medium + Premium</p>
-                                </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
+                            </a>
+                        <?php endforeach; ?>
                         <a href='#' class="w-60 h-auto">
                             <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
                                 <div>

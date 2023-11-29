@@ -84,9 +84,9 @@ function upload($name)
 function hapus($id)
 {
     global $koneksi;
-    $file = query("SELECT * FROM products WHERE id=$id");
+    $file = query("SELECT * FROM products WHERE id_products=$id");
     unlink('C:/xampp/htdocs/chemaraya/assets/images/' . $file[0]['image']);
-    mysqli_query($koneksi, "DELETE FROM products WHERE id = $id");
+    mysqli_query($koneksi, "DELETE FROM products WHERE id_products = $id");
     return mysqli_affected_rows($koneksi);
 }
 
@@ -96,7 +96,7 @@ function edit($data)
     $name = htmlspecialchars($data["name"]);
     $price = htmlspecialchars($data["price"]);
     $description = htmlspecialchars($data["description"]);
-    $id = htmlspecialchars($data["id"]);
+    $id = $data["id"];
     $category = $data["category"];
     $gambarLama = $data["gambarLama"];
     if ($_FILES['image']['error'] === 4) {
@@ -112,7 +112,7 @@ function edit($data)
                                                 description='$description',
                                                 price='$price',
                                                 category='$category'
-                                                WHERE id = $id");
+                                                WHERE id_products = $id");
     return mysqli_affected_rows($koneksi);
 }
 
