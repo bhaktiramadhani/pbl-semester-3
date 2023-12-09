@@ -11,7 +11,9 @@ class Upload
 
         // cek gambar diupload atau tidak
         if ($error === 4) {
-            echo '<script>alert("pilih gambar terlebih dahulu!")</script>';
+            Flasher::setFlash('Pilih gambar terlebih dahulu', '', 'error');
+            header('Location: ' . BASEURL . '/dashboard/products');
+            die;
         }
 
         // cek apakah yang diupload gambar
@@ -21,14 +23,14 @@ class Upload
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
             Flasher::setFlash('Gambar harus JPG, JPEG, PNG', '', 'error');
             header('Location: ' . BASEURL . '/dashboard/products');
-            return false;
+            die;
         }
 
         // cek ukuran gambar
         if ($ukuranfile > 2000000) {
             Flasher::setFlash('Gambar tidak boleh lebih dari 2 MB', '', 'error');
             header('Location: ' . BASEURL . '/dashboard/products');
-            return false;
+            die;
         }
 
         // membuat nama gambar dari nama produk

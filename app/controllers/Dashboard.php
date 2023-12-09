@@ -5,6 +5,11 @@ class Dashboard extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Anda harus login terlebih dahulu', '', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
         $data['username'] = $_SESSION['username'];
         $data['title'] = "Dashboard";
         $data['products'] = $this->model('Product_model')->getAllProduct();
@@ -75,6 +80,44 @@ class Dashboard extends Controller
         }
     }
 
+    public function edit_product()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $name = $_POST['name'];
+            $category = $_POST['category'];
+            $price = $_POST['price'];
+            $description = $_POST['description'];
+            $error = $_FILES['image']['error'];
+            $id = $_POST['id'];
+
+            if ($error === 4) {
+                $image = $_POST['image-name'];
+            } else {
+                $image = Upload::uploadImage('produk');
+                Upload::deleteImage('produk', $_POST['image-name']);
+            }
+
+            $data = [
+                'name' => $name,
+                'category' => $category,
+                'price' => $price,
+                'description' => $description,
+                'image' => $image,
+                'id' => $id
+            ];
+
+            if ($this->model('Product_model')->editProduct($data) > 0) {
+                Flasher::setFlash('data product berhasil', 'diupdate', 'success');
+                header('Location: ' . BASEURL . '/dashboard/products');
+                exit;
+            } else {
+                Flasher::setFlash('data product gagal', 'diupdate', 'error');
+                header('Location: ' . BASEURL . '/dashboard/products');
+                exit;
+            }
+        }
+    }
+
     public function best_seller()
     {
         $data['username'] = $_SESSION['username'];
@@ -104,16 +147,46 @@ class Dashboard extends Controller
 
     public function hapus_best_seller($id)
     {
-        header('Location: ' . BASEURL . '/dashboard/best_seller');
-        die;
-        // if ($this->model('BestSeller_model')->tambahBestSeller($_POST) > 0) {
-        //     Flasher::setFlash('best seller berhasil', 'ditambahkan', 'success');
-        //     header('Location: ' . BASEURL . '/dashboard/best_seller');
-        //     exit;
-        // } else {
-        //     Flasher::setFlash('best seller gagal', 'ditambahkan', 'error');
-        //     header('Location: ' . BASEURL . '/dashboard/best_seller');
-        //     exit;
-        // }
+        if ($this->model('BestSeller_model')->hapusBestSeller($id) > 0) {
+            Flasher::setFlash('data best seller berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/dashboard/best_seller');
+            exit;
+        } else {
+            Flasher::setFlash('data best gagal', 'dihapus', 'error');
+            header('Location: ' . BASEURL . '/dashboard/best_seller');
+            exit;
+        }
+    }
+
+    public function edit_best_seller()
+    {
+        if ($this->model('BestSeller_model')->editBestSeller($_POST) > 0) {
+            Flasher::setFlash('data best seller berhasil', 'diupdate', 'success');
+            header('Location: ' . BASEURL . '/dashboard/best_seller');
+            exit;
+        } else {
+            Flasher::setFlash('data best seller gagal', 'diupdate', 'error');
+            header('Location: ' . BASEURL . '/dashboard/best_seller');
+            exit;
+        }
+    }
+
+    public function getEditProduct()
+    {
+        echo json_encode($this->model('Product_model')->getProductById($_POST['id']));
+    }
+    public function getEditBestSeller()
+    {
+        echo json_encode($this->model('BestSeller_model')->getBestSellerById($_POST['id']));
+    }
+
+    public function testimoni()
+    {
+        $data['username'] = $_SESSION['username'];
+        $data['title'] = "Dashboard";
+        $this->view('templates/header', $data);
+        $this->view('templates/dashboard_header', $data);
+        $this->view('dashboard/testimoni', $data);
+        $this->view('templates/footer');
     }
 }

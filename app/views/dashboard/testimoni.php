@@ -20,17 +20,18 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
                 </a>
             </li>
+
             <li>
-                <a href="<?= BASEURL; ?>/dashboard/best_seller" class="flex items-center p-2 text-gray-900 rounded-lg  bg-gray-100  group">
-                    <svg class="w-5 h-5 transition duration-75 dark:text-gray-400 text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                <a href="<?= BASEURL; ?>/dashboard/best_seller" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                     </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Best Seller</span>
                 </a>
             </li>
             <li>
-                <a href="<?= BASEURL; ?>/dashboard/testimoni" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                <a href="<?= BASEURL; ?>/dashboard/testimoni" class="flex items-center p-2 text-gray-900 rounded-lg  bg-gray-100  group">
+                    <svg class="w-5 h-5 transition duration-75 dark:text-gray-400 text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                     </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Testimoni</span>
@@ -55,17 +56,12 @@
         </ul>
     </div>
 </aside>
-
-
-
-
-
 <!-- konten utama -->
 <div class="p-4 sm:ml-64">
     <div class="p-4 mt-14">
         <!-- semua produk dan tambah produk -->
         <section id="products">
-            <h1 class="font-bold text-[22px] mb-6">Best Seller</h1>
+            <h1 class="font-bold text-[22px] mb-6">Testimoni</h1>
             <div class="pb-4 bg-white dark:bg-gray-900">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative mt-1 flex flex-wrap justify-between gap-4">
@@ -80,22 +76,16 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Urutan
+                                No
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nama Produk
+                                Nama Customer
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Gambar
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Deskripsi
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Price
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Kategori
+                                Testimoni
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -116,12 +106,6 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <?= $bestSeller['description']; ?>
-                                </td>
-                                <td class="px-6 py-4">
-                                    Rp. <?= number_format($bestSeller['price'], 0, ',', '.') ?>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <?= $bestSeller['category_name']; ?>
                                 </td>
                                 <td class="px-6 py-4 space-y-2">
                                     <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block edit-best-seller" data-id="<?= $bestSeller['id_best_seller'] ?>">Edit</a>
@@ -187,10 +171,3 @@
     </div>
 
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="http://localhost/chemaraya/js/handleBestSeller.js">
-
-</script>
-<!-- menginisiasi flashnya -->
-<?php Flasher::flash(); ?>

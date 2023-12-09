@@ -21,8 +21,8 @@ class Login extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            // getuser by username menggunakan Login_model
-            $user = $this->model('Login_model')->getUserByUsername($username);
+            // getuser by username menggunakan Auth_model
+            $user = $this->model('Auth_model')->getUserByUsername($username);
 
             // apabila username tidak ditemukan
             if (!$user) {
@@ -35,6 +35,7 @@ class Login extends Controller
             // apabila username ditemukan
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['username'] = $username;
+                Flasher::setFlash('Anda berhasil login', '', 'success');
                 header('location: ../dashboard');
             } else {
                 die("  <script>

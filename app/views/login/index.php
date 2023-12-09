@@ -49,3 +49,5 @@
         </button>
     </div>
 </div>
+<!-- menginisiasi flashnya -->
+<?php Flasher::flash(); ?>
