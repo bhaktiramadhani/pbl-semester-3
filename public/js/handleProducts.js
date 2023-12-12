@@ -17,15 +17,17 @@ $(function () {
 
   $(".tambah-produk").on("click", function () {
     $("#modal-title").html("Tambah Produk");
-    $(".modal-button").html("Tambah Produk");
+    $("#modal-button").html("Tambah Produk");
     $("#modal-img").addClass("hidden");
     $("#modal-img").attr("src", "");
     $("#form-produk").attr("action", "tambah_product");
 
     $("#name").val("");
-    $("#category").val("Pilih-Kategori");
+    $("#category").val("");
     $("#price").val("");
     $("#description").val("");
+    $("#link_gojek").val("");
+    $("#link_grab").val("");
     $("#image-name").val("");
     $("#id").val("");
     $("#file_input").val("");
@@ -54,10 +56,19 @@ $(function () {
         $("#category").val(data.id_category);
         $("#price").val(data.price);
         $("#description").val(data.description);
+        $("#link_gojek").val(data.link_gojek);
+        $("#link_grab").val(data.link_grab);
         $("#image-name").val(data.image);
         $("#id").val(data.id_products);
       },
     });
+  });
+
+  $("#search").change(function () {
+    $("#form-search").attr(
+      "action",
+      `http://localhost/chemaraya/dashboard/products/${$(this).val()}`
+    );
   });
 });
 

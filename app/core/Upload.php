@@ -2,7 +2,7 @@
 
 class Upload
 {
-    public static function uploadImage($page)
+    public static function uploadImage($page, $redirect)
     {
         $namaFile = $_FILES['image']['name'];
         $ukuranfile = $_FILES['image']['size'];
@@ -12,7 +12,7 @@ class Upload
         // cek gambar diupload atau tidak
         if ($error === 4) {
             Flasher::setFlash('Pilih gambar terlebih dahulu', '', 'error');
-            header('Location: ' . BASEURL . '/dashboard/products');
+            header('Location: ' . BASEURL . "/dashboard/$redirect");
             die;
         }
 
@@ -22,14 +22,14 @@ class Upload
 
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
             Flasher::setFlash('Gambar harus JPG, JPEG, PNG', '', 'error');
-            header('Location: ' . BASEURL . '/dashboard/products');
+            header('Location: ' . BASEURL . "/dashboard/$redirect");
             die;
         }
 
         // cek ukuran gambar
         if ($ukuranfile > 2000000) {
             Flasher::setFlash('Gambar tidak boleh lebih dari 2 MB', '', 'error');
-            header('Location: ' . BASEURL . '/dashboard/products');
+            header('Location: ' . BASEURL . "/dashboard/$redirect");
             die;
         }
 

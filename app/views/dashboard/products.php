@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= BASEURL; ?>/dashboard/products" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= BASEURL; ?>/dashboard/testimoni" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                     </svg>
@@ -67,10 +67,10 @@
         <section id="products">
             <h1 class="font-bold text-[22px] mb-6">Products</h1>
             <div class="pb-4 bg-white dark:bg-gray-900">
-                <label for="table-search" class="sr-only">Search</label>
+                <label for="search" class="sr-only">Search</label>
                 <div class="relative mt-1 flex flex-wrap justify-between gap-4">
-                    <form action="products.php" method="get">
-                        <input type="text" id="table-search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
+                    <form action="<?= BASEURL; ?>/dashboard/products/" method="post" id="form-search">
+                        <input type="text" id="search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?= $data['keyword'] ?>">
                     </form>
                     <button data-modal-target="modal" data-modal-toggle="modal" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-produk">Tambah Produk</button>
                 </div>
@@ -93,10 +93,13 @@
                                 Deskripsi
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Price
+                                Harga
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Kategori
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Link
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -124,6 +127,16 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <?= $product['category_name']; ?>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="<?= $product['link_gojek']; ?>" target="_blank">
+                                        <img src="<?= BASEURL; ?>/images/icons/gojek-logo.svg" alt="gojek logo">
+                                    </a>
+                                    <br>
+                                    <a href="<?= $product['link_grab']; ?>" target="_blank" class="p-2 bg-[#01AA13] w-[55px]">
+                                        <img src="<?= BASEURL; ?>/images/icons/grab-logo.png" alt="grab logo" width="55" height="17">
+                                    </a>
+
                                 </td>
                                 <td class="px-6 py-4 space-y-2">
                                     <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block edit-produk" data-id="<?= $product['id_products']; ?>">Edit</a>
@@ -175,8 +188,8 @@
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
-                                <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected disabled value="Pilih-Kategori">Pilih Kategori</option>
+                                <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <option selected disabled value="">Pilih Kategori</option>
                                     <?php foreach ($data['categorys'] as $category) : ?>
                                         <option value="<?= $category['id_category'] ?>"><?= $category['category_name'] ?></option>
                                     <?php endforeach ?>
@@ -186,12 +199,22 @@
                                 <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                                 <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rp. xx.xxx" required="">
                             </div>
+                            <div class="space-y-6">
+                                <div class="sm:col-span-2">
+                                    <label for="link_gojek" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Gojek</label>
+                                    <input type="url" name="link_gojek" id="link_gojek" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="https://gofood.link" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="link_grab" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Grab</label>
+                                    <input type="url" name="link_grab" id="link_grab" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="https://food.grab.com">
+                                </div>
+                            </div>
                             <div class="sm:col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                                 <textarea id="description" name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="deskripsi..."></textarea>
                             </div>
                         </div>
-                        <button type="submit" name="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-brown rounded-lg hover:bg-brownHover transition-all duration-200 ease-in-out modal-button">Tambah Produk</button>
+                        <button type="submit" name="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-brown rounded-lg hover:bg-brownHover transition-all duration-200 ease-in-out" id="modal-button">Tambah Produk</button>
                     </form>
                 </div>
             </div>
@@ -201,8 +224,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="http://localhost/chemaraya/js/handleProducts.js">
-
+<script src="http://localhost/chemaraya/public/js/handleProducts.js">
 </script>
 
 <!-- menginisiasi flashnya -->

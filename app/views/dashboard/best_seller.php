@@ -69,7 +69,7 @@
             <div class="pb-4 bg-white dark:bg-gray-900">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative mt-1 flex flex-wrap justify-between gap-4">
-                    <form action="products.php" method="get">
+                    <form action="" method="post">
                         <input type="text" id="table-search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
                     </form>
                     <button data-modal-target="modal" data-modal-toggle="modal" class="tambah-best-seller text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out <?php if (count($data['best_seller']) === 3) echo 'cursor-not-allowed'; ?>" <?php if (count($data['best_seller']) === 3) echo 'disabled title="sudah ada 3" '; ?>>Tambah Best Seller</button>

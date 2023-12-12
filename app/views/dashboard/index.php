@@ -62,7 +62,7 @@
             <div class="relative overflow-x-auto p-4">
                 <h1 class="font-bold text-2xl mb-4">Dashboard</h1>
                 <div class="grid justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-6 max-w-5xl">
-                    <a href='best-seller' class="w-60 h-auto">
+                    <a href='<?= BASEURL; ?>/dashboard/best_seller' class="w-60 h-auto">
                         <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
                             <div>
                                 <span class="font-bold text-lg"><?= count($data['best_seller']); ?></span>
@@ -74,7 +74,7 @@
                             <p>Selengkapnya</p>
                         </div>
                     </a>
-                    <a href='dashboard/products.php' class="w-60 h-auto">
+                    <a href='<?= BASEURL; ?>/dashboard/products' class="w-60 h-auto">
                         <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
                             <div>
                                 <span class="font-bold text-lg"><?= count($data['products']); ?></span>
@@ -87,20 +87,24 @@
                         </div>
                     </a>
                     <?php foreach ($data['categorys'] as $name => $value) : ?>
-                        <a href='dashboard/products.php?keyword=<?= urlencode($name) ?>' class="w-60 h-auto">
-                            <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
-                                <div>
-                                    <span class="font-bold text-lg"><?= $value; ?></span>
-                                    <p class="font-bold text-xs"><?= $name; ?></p>
+                        <form action="<?= BASEURL; ?>/dashboard/products/<?= $name ?>" method="post">
+                            <input type="hidden" name="keyword" value="<?= $name; ?>">
+                            <button class="w-60 h-auto" type="submit">
+                                <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
+                                    <div>
+                                        <span class="font-bold text-lg"><?= $value; ?></span>
+                                        <p class="font-bold text-xs"><?= $name; ?></p>
+                                    </div>
+                                    <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
                                 </div>
-                                <img src="assets/images/icons/bestbuy.svg" alt="logo best seller" width="40" height="38">
-                            </div>
-                            <div class="bg-black text-white text-center py-2 rounded-b-md">
-                                <p>Selengkapnya</p>
-                            </div>
-                        </a>
+                                <div class="bg-black text-white text-center py-2 rounded-b-md">
+                                    <p>Selengkapnya</p>
+                                </div>
+                            </button>
+                        </form>
+
                     <?php endforeach; ?>
-                    <a href='#' class="w-60 h-auto">
+                    <a href='<?= BASEURL; ?>/dashboard/testimoni' class="w-60 h-auto">
                         <div class="flex justify-between pt-6 pb-[50px] px-7 bg-slate-400 rounded-t-md">
                             <div>
                                 <span class="font-bold text-lg"><?= count($data['testimoni']); ?></span>

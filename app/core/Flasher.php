@@ -18,7 +18,8 @@ class Flasher
             echo '
                 <script>
                 Swal.fire({
-                    title: "' . $_SESSION['flash']['pesan'] . ' ' . $_SESSION['flash']['aksi'] . '",
+                    title: "' . $_SESSION['flash']['pesan'] . '",
+                    text: "' . $_SESSION['flash']['aksi'] . '",
                     icon: "' . $_SESSION['flash']['tipe'] . '",
                   });
                 </script>

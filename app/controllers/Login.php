@@ -26,10 +26,9 @@ class Login extends Controller
 
             // apabila username tidak ditemukan
             if (!$user) {
-                die("  <script>
-                            alert('Username tidak ditemukan, silahkan masukkan username dengan benar!');
-                            window.location.href = '../login';    
-                        </script>");
+                Flasher::setFlash('Username tidak ditemukan', 'silahkan masukkan username dengan benar!', 'error');
+                header('location: ../login');
+                die;
             }
 
             // apabila username ditemukan
@@ -38,10 +37,9 @@ class Login extends Controller
                 Flasher::setFlash('Anda berhasil login', '', 'success');
                 header('location: ../dashboard');
             } else {
-                die("  <script>
-                            alert('Password Salah, silahkan masukkan password dengan benar!');
-                            window.location.href = '../login';    
-                        </script>");
+                Flasher::setFlash('Password Salah', 'silahkan masukkan password dengan benar!', 'error');
+                header('location: ../login');
+                die;
             }
         }
     }
