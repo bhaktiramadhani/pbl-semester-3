@@ -36,6 +36,7 @@ $(function () {
   $(".edit-produk").on("click", function () {
     const id = $(this).data("id");
     $("#modal-title").html("Edit Produk");
+    $("#modal-title").html("Edit Produk");
     $(".modal-button").html("Edit Produk");
     $("#modal-img").removeClass("hidden");
     $("#form-produk").attr("action", "edit_product");

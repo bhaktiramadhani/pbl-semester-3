@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= BASEURL; ?>/profile" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= BASEURL; ?>/dashboard/profile" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                     </svg>
@@ -86,18 +86,6 @@
                                 Nama Produk
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Gambar
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Deskripsi
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Price
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Kategori
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -111,18 +99,6 @@
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <?= $bestSeller['name']; ?>
                                 </th>
-                                <td class="px-6 py-4">
-                                    <img src="<?= BASEURL; ?>/images/produk/<?= $bestSeller['image']; ?>" alt="" class="w-20">
-                                </td>
-                                <td class="px-6 py-4">
-                                    <?= $bestSeller['description']; ?>
-                                </td>
-                                <td class="px-6 py-4">
-                                    Rp. <?= number_format($bestSeller['price'], 0, ',', '.') ?>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <?= $bestSeller['category_name']; ?>
-                                </td>
                                 <td class="px-6 py-4 space-y-2">
                                     <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block edit-best-seller" data-id="<?= $bestSeller['id_best_seller'] ?>">Edit</a>
                                     <a href="#" class="font-medium text-white bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg inline-block delete-best-seller" data-id="<?= $bestSeller['id_best_seller'] ?>" data-name="<?= $bestSeller['name'] ?>">Hapus</a>
@@ -189,8 +165,26 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="http://localhost/chemaraya/js/handleBestSeller.js">
-
+<script src="<?= BASEURL; ?>/js/handleBestSeller.js">
 </script>
+<!-- <script>
+    $("#name").change(function() {
+        console.log($(this).val());
+        $.ajax({
+            url: "http://localhost/chemaraya/dashboard/getEditBestSeller",
+            data: {
+                id: id,
+            },
+            method: "post",
+            dataType: "json",
+            success: function(data) {
+                $("#name").val(data.name);
+                $("#urutan").val(data.urutan);
+                $("#id-best-seller").val(data.id_best_seller);
+                $("#id-products").val(data.id_products);
+            },
+        });
+    });
+</script> -->
 <!-- menginisiasi flashnya -->
 <?php Flasher::flash(); ?>

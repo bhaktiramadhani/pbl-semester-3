@@ -74,12 +74,20 @@ class BestSeller_model
 
     public function editBestSeller($data)
     {
+        // mendapatkan id products dari nama yang diganti
+        $this->db->query("SELECT products.id_products
+                            FROM products
+                            WHERE name = :name");
+        $this->db->bind('name', $data['name']);
+        $getIdProductNew = $this->db->single();
+
         $query = "UPDATE best_seller SET urutan = :urutan, id_products = :id_products WHERE id_best_seller = :id_best_seller";
         $this->db->query($query);
         $this->db->bind('id_best_seller', $data['id-best-seller']);
-        $this->db->bind('id_products', $data['id-products']);
+        $this->db->bind('id_products', $getIdProductNew['id_products']);
         $this->db->bind('urutan', $data['urutan']);
         $this->db->execute();
+
 
         return $this->db->rowCount();
     }

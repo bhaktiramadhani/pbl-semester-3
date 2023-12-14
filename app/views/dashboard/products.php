@@ -77,7 +77,7 @@
             </div>
             <div class="relative overflow-x-auto p-4">
 
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -116,8 +116,9 @@
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <?= $product['name']; ?>
                                 </th>
-                                <td class="px-6 py-4">
-                                    <img src="<?= BASEURL; ?>/images/produk/<?= $product['image']; ?>" alt="" class="w-20">
+                                <td class="px-6 py-4 ">
+                                    <img src="<?= BASEURL; ?>/images/produk/<?= $product['image']; ?>" alt="" class="w-40
+                                    ">
                                 </td>
                                 <td class="px-6 py-4">
                                     <?= $product['description']; ?>
@@ -128,14 +129,22 @@
                                 <td class="px-6 py-4">
                                     <?= $product['category_name']; ?>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <a href="<?= $product['link_gojek']; ?>" target="_blank">
+                                <td class="px-6 py-4 flex flex-col items-center">
+                                    <a href="<?= $product['link_gojek']; ?>" target="_blank" data-tooltip-target="tooltip-gojek-<?= $id; ?>" class="block p-2 w-16 bg-[#01AA13] rounded-md">
                                         <img src="<?= BASEURL; ?>/images/icons/gojek-logo.svg" alt="gojek logo">
                                     </a>
+                                    <div id="tooltip-gojek-<?= $id; ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        <?= $product['link_gojek']; ?>
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
                                     <br>
-                                    <a href="<?= $product['link_grab']; ?>" target="_blank" class="p-2 bg-[#01AA13] w-[55px]">
-                                        <img src="<?= BASEURL; ?>/images/icons/grab-logo.png" alt="grab logo" width="55" height="17">
+                                    <a href="<?= $product['link_grab']; ?>" target="_blank" class="block p-2 w-16 bg-[#01AA13] rounded-md" data-tooltip-target="tooltip-grab-<?= $id; ?>" data-tooltip-placement="bottom">
+                                        <img src="<?= BASEURL; ?>/images/icons/grab-logo.png" alt="grab logo" width="64" height="17">
                                     </a>
+                                    <div id="tooltip-grab-<?= $id; ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700 tooltip-bottom">
+                                        <?= $product['link_grab']; ?>
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
 
                                 </td>
                                 <td class="px-6 py-4 space-y-2">
@@ -176,17 +185,17 @@
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <input type="hidden" name="image-name" id="image-name">
                             <input type="hidden" name="id" id="id">
-                            <div class="sm:col-span-2">
+                            <div class="">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
                                 <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nama..." required="">
                             </div>
-                            <div class="sm:col-span-2">
+                            <div class="">
                                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
-                                <img src="" alt="" id="modal-img" class="mb-2">
+                                <img src="" alt="" id="modal-img" class="mb-2 h-64">
                                 <input id="file_input" type="file" name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" accept="image/*" onchange="previewFile(this);">
                                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPG, JPEG, PNG (MAX. 2MB).</p>
                             </div>
-                            <div class="sm:col-span-2">
+                            <div class="">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
                                 <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                     <option selected disabled value="">Pilih Kategori</option>
@@ -200,16 +209,16 @@
                                 <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rp. xx.xxx" required="">
                             </div>
                             <div class="space-y-6">
-                                <div class="sm:col-span-2">
+                                <div class="">
                                     <label for="link_gojek" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Gojek</label>
                                     <input type="url" name="link_gojek" id="link_gojek" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="https://gofood.link" required="">
                                 </div>
-                                <div class="sm:col-span-2">
+                                <div class="">
                                     <label for="link_grab" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Grab</label>
                                     <input type="url" name="link_grab" id="link_grab" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="https://food.grab.com">
                                 </div>
                             </div>
-                            <div class="sm:col-span-2">
+                            <div class="">
                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                                 <textarea id="description" name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="deskripsi..."></textarea>
                             </div>
