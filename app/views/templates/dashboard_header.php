@@ -10,7 +10,7 @@
                     </svg>
                 </button>
                 <a href="<?= BASEURL; ?>" class="flex ms-2 md:me-24">
-                    <img src="<?= BASEURL; ?>/images/logo-chemaraya.svg" class="h-10 me-3" alt="FlowBite Logo" />
+                    <img src="<?= BASEURL; ?>/images/logo/logo-chemaraya.svg" class="h-10 me-3" alt="FlowBite Logo" />
                     <span class="self-center text-sm font-semibold whitespace-nowrap text-white">Chemaraya</span>
                 </a>
             </div>

@@ -7,3 +7,6 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+.swiper-pagination span {
+  background-color: white;
+}

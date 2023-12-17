@@ -1,15 +1,7 @@
-<?php
-
-// if (isset($_POST['submit'])) {
-//     echo $_POST['username'];
-//     echo $_POST['password'];
-// }
-?>
-
 <div class="w-full h-screen flex flex-col justify-center items-center mx-auto max-w-xs">
     <div class="flex justify-center w-full mb-8">
         <a href="<?= BASEURL; ?>">
-            <img src="images/logo-chemaraya.svg" alt="logo chemaraya" width="200">
+            <img src="<?= BASEURL; ?>/images/logo/logo-chemaraya.svg" alt="logo chemaraya" width="200">
         </a>
     </div>
     <h1 class="font-bold mb-4 text-2xl">Register</h1>

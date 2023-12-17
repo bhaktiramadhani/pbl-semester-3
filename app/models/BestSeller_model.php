@@ -31,6 +31,7 @@ class BestSeller_model
         return $this->db->single();
     }
 
+
     public function tambahBestSeller($data)
     {
         $name = $data["name"];

@@ -1,3 +1,0 @@
-<div>
-    ini about
-</div>
