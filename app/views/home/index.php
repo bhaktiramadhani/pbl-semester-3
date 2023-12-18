@@ -17,39 +17,39 @@
 
 </section>
 <section id="best-product" class="scroll-mt-20">
-    <div class="py-12 text-[32px] text-center mx-5 lg:mx-[100px]">
+    <div class="py-12 text-[32px] text-center mx-5 lg:mx-[100px] xl:max-w-6xl xl:mx-auto">
         <h2 class="text-3xl md:text-[32px] font-bold">Best Product</h2>
         <div class="mt-8 flex flex-wrap-reverse justify-center w-full lg:mx-auto gap-y-5">
             <!-- best 2 -->
-            <div class="my-1 px-2 w-1/2 md:w-1/3 lg:my-4 lg:px-4 space-y-3">
+            <div class="my-1 px-2 w-1/2 md:w-1/3 lg:my-4 lg:px-4 space-y-3" data-aos="fade-up" data-aos-duration="2000">
                 <a href="products/detail/<?= $data['best_sellers'][1]['id_products'] ?>" class="h-96">
                     <div class="block overflow-hidden rounded-md group">
-                        <img alt="Placeholder" class="h-64 sm:h-[350px] block w-full rounded-md shadow-sm object-cover object-top transition-all duration-300 ease-in-out group-hover:scale-110" src="images/produk/<?= $data['best_sellers'][1]['image'] ?>">
+                        <img alt="Placeholder" class="h-64 sm:h-[400px] md:h-[320px] xl:h-[400px] block w-full rounded-md shadow-sm object-cover object-top transition-all duration-300 ease-in-out group-hover:scale-110" src="images/produk/<?= $data['best_sellers'][1]['image'] ?>">
                     </div>
                 </a>
-                <h3 class="font-semibold text-base md:text-xl lg:text-2xl"><?= $data['best_sellers'][1]['name'] ?></h3>
+                <h3 class="font-semibold text-base md:text-xl lg:text-2xl" data-aos="zoom-in-up"><?= $data['best_sellers'][1]['name'] ?></h3>
             </div>
             <!-- END -->
 
             <!-- best 1 -->
-            <div class="my-1 px-1 w-3/4 sm:w-2/3 md:w-1/3 lg:px-4 md:-mt-3 space-y-3 order-1 md:order-none">
+            <div class="my-1 px-1 w-3/4 sm:w-2/3 md:w-1/3 lg:px-4 md:-mt-3 space-y-3 order-1 md:order-none" data-aos="fade-up" data-aos-duration="1000">
                 <a href="products/detail/<?= $data['best_sellers'][0]['id_products'] ?>" class="h-96">
                     <div class="block overflow-hidden rounded-md group">
-                        <img alt="Placeholder" class="h-96 sm:h-[500px] md:h-80 block w-full rounded-md shadow-sm object-cover object-top transition-all duration-300 ease-in-out group-hover:scale-110" src="images/produk/<?= $data['best_sellers'][0]['image'] ?>">
+                        <img alt="Placeholder" class="h-96 sm:h-[500px] md:h-[380px] xl block w-full rounded-md shadow-sm object-cover object-top transition-all duration-300 ease-in-out group-hover:scale-110" src="images/produk/<?= $data['best_sellers'][0]['image'] ?>">
                     </div>
                 </a>
-                <h3 class="font-semibold text-base md:text-2xl lg:text-[28px]"><?= $data['best_sellers'][1]['name'] ?></h3>
+                <h3 class="font-semibold text-base md:text-2xl lg:text-[28px] px-1" data-aos="zoom-in-up"><?= $data['best_sellers'][0]['name'] ?></h3>
             </div>
             <!-- END -->
 
             <!-- best 3 -->
-            <div class="my-1 px-2 w-1/2 md:w-1/3 lg:my-4 lg:px-4 space-y-3">
+            <div class="my-1 px-2 w-1/2 md:w-1/3 lg:my-4 lg:px-4 space-y-3" data-aos="fade-up" data-aos-duration="2000">
                 <a href="products/detail/<?= $data['best_sellers'][2]['id_products'] ?>" class="h-96">
                     <div class="block overflow-hidden rounded-md group">
-                        <img alt="Placeholder" class="h-64 sm:h-[350px] block w-full rounded-md shadow-sm object-cover object-top transition-all duration-300 ease-in-out group-hover:scale-110" src="images/produk/<?= $data['best_sellers'][2]['image'] ?>">
+                        <img alt="Placeholder" class="h-64 sm:h-[400px] md:h-[320px] xl:h-[400px] block w-full rounded-md shadow-sm object-cover object-top transition-all duration-300 ease-in-out group-hover:scale-110" src="images/produk/<?= $data['best_sellers'][2]['image'] ?>">
                     </div>
                 </a>
-                <h3 class="font-semibold text-base md:text-xl lg:text-2xl"><?= $data['best_sellers'][2]['name'] ?></h3>
+                <h3 class="font-semibold text-base md:text-xl lg:text-2xl" data-aos="zoom-in-up"><?= $data['best_sellers'][2]['name'] ?></h3>
             </div>
             <!-- END -->
         </div>
@@ -59,7 +59,6 @@
     <div class="py-12 mx-auto lg:mx-[100px] lg:p-4 flex flex-col">
         <h2 class="text-3xl md:text-[32px] text-center font-bold">Menu</h2>
         <div class="mt-8 flex flex-col md:flex-row gap-3 justify-center items-center">
-
             <div class="w-auto">
                 <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="text-white bg-brown_B500 hover:bg-brownHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">Varian <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -86,7 +85,7 @@
         <div class="container w-full p-10 md:py-12 px-0 md:p-8 mx-auto">
             <div class="p-5 md:p-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-6 mx-auto">
                 <?php foreach ($data['products'] as $product) : ?>
-                    <a href="products/detail/<?= $product['id_products']; ?>" class="py-3 bg-[#FCDFD7] transform cursor-pointer rounded-md group overflow-hidden">
+                    <a href="products/detail/<?= $product['id_products']; ?>" class="py-3 bg-[#FCDFD7] transform cursor-pointer rounded-md group overflow-hidden" data-aos="fade-up" data-aos-duration="2000">
                         <img src="images/produk/<?= $product['image'] ?>" alt="" class="transition-all ease-in-out overflow-hidden w-full group-hover:scale-110">
                         <hr class="h-px absolute left-0 bottom-0" style="background-color: black;">
                         <div class="flex flex-col my-5 ml-[13px] gap-3 absolute left-0 bottom-0">
@@ -122,10 +121,10 @@
         <h2 class="text-3xl md:text-[32px] text-center font-bold">ABOUT BRAND</h2>
         <div class="bg-brown_B200 mt-10 py-7 px-10 lg:px-[100px] flex flex-wrap lg:flex-nowrap items-center justify-center gap-[53px]">
             <span class="space-y-5 text-lg lg:text-2xl font-normal my-[14px] order-2 lg:order-1">
-                <p class="indent-12">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
                     Chemaraya Roti Bakar Bandung berdiri sejak tahun 2021 ketika Indonesia mengalami pandemi Covid-19. Bermula dari sang pemilik dan istrinya sangat menyukai Roti Bakar Bandung, namun ketika membeli Roti Bakar Bandung di outlet lain, beliau merasa ada yang kurang seperti dari segi rasa dan tingkat kematangannya. Akhirnya beliau mencoba untuk membuat Roti Bakar tersebut dan membuka outlet dengan nama “Chemaraya Roti Bakar Bandung”.
                 </p>
-                <p class="indent-12">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
                     Dengan menambahkan beberapa varian atau rasa yang mungkin belum ada dibuat dari outlet lainnya, membuat Chemaraya Roti Bakar Bandung berbeda dengan outlet lainnya.
                 </p>
             </span>
@@ -135,15 +134,15 @@
 </section>
 
 <section id="history">
-    <div class="w-full  mt-[120px]">
+    <div class="w-full mt-[120px]">
         <h2 class="text-3xl md:text-[32px] text-center font-bold">HISTORY OF “ROTI BAKAR BANDUNG”</h2>
         <div class="bg-brown_B200 mt-10 py-7 px-10 lg:px-[100px] flex flex-wrap lg:flex-nowrap items-center justify-center gap-[53px]">
             <img src="images/history.png" alt="history image" class='h-[480px]'>
             <span class="space-y-5 text-lg lg:text-2xl font-normal my-[14px]">
-                <p class="indent-12">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
                     Roti bakar menjadi hidangan khas di Kota Bandung, dengan masuknya tepung terigu yang diperkenalkan oleh bangsa Belanda. Sejarahnya dimulai dengan adanya foodscape atau bentang makanan, terutama setelah tepung terigu dari gandum, ragi, dan mentega memasuki kota Bandung. Perubahan ini dipengaruhi oleh akulturasi yang beragam di bawah pemerintahan Hindia Belanda. Pemerintahan Belanda juga tidak hanya membawa bahan baku beragam ke Kota Bandung, tetapi juga peralatan memasak seperti loyang dan teknik memasak dengan oven.
                 </p>
-                <p class="indent-12">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
                     Roti bakar pun semakin dikenal, dihidangkan di Warung Kopi Purnama di Jalan Alkateri yang dikenal sebagai salah satu kedai kopi legendaris dan ikon wisata heritage di Kota Bandung.
                 </p>
             </span>
@@ -155,7 +154,7 @@
     <div class="w-full mx-auto max-w-7xl my-[80px] px-10 lg:px-[100px]">
         <h2 class="text-3xl md:text-[32px] text-center font-bold mb-10">TESTIMONI</h2>
         <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" data-aos="fade-up" data-aos-duration="1000">
                 <?php foreach ($data['testimonis'] as $testimoni) : ?>
                     <div class="swiper-slide text-center w-full flex flex-col items-center justify-center">
                         <img class="mx-auto w-[168px] h-[168px] rounded-full" src="images/testimoni/<?= $testimoni['image'] ?>" alt="<?= $testimoni['name'] ?>">
@@ -170,22 +169,22 @@
 </section>
 
 <section id="banner">
-    <div class="bg-brown_B300 w-full h-auto px-16 md:px-[100px] py-14 flex justify-between flex-wrap gap-y-20">
-        <div class="flex items-center gap-2">
+    <div class="bg-brown_B300 w-full h-auto px-10 md:px-[100px] py-14 flex justify-between flex-wrap gap-y-20">
+        <div class="flex items-center gap-2" data-aos="fade-up">
             <img src="images/banner-1.svg" alt="banner-1" width="67" height="67">
             <div class="flex flex-col mt-4">
                 <h2 class="font-bold text-2xl">Harga Terjangkau</h2>
                 <p class="font-normal text-base">Ramah dikantong</p>
             </div>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2" data-aos="fade-up">
             <img src="images/banner-2.svg" alt="banner-2" width="67" height="67">
             <div class="flex flex-col">
                 <h2 class="font-bold text-2xl">Rasa yang Lezat</h2>
                 <p class="font-normal text-base">Tingkat kematangan yang sempurna</p>
             </div>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4" data-aos="fade-up">
             <img src="images/banner-3.svg" alt="banner-3" width="50" height="30">
             <div class="flex flex-col">
                 <h2 class="font-bold text-2xl">Pelayanan Terbaik</h2>
@@ -196,7 +195,7 @@
 </section>
 
 <section id="contact-us">
-    <div class="bg-brown_B500 w-full px-16 md:px-[100px] py-[76px] flex justify-between flex-wrap gap-y-10 overflow-hidden">
+    <div class="bg-brown_B400 w-full px-10 md:px-[100px] py-[76px] flex justify-between flex-wrap gap-y-10 overflow-hidden">
         <div class="font-bold space-y-[17px]">
             <h2 class="text-[40px]">CONTACT US !</h2>
             <p class="text-base">Kami Selalu siap membantu mu!</p>
@@ -211,7 +210,7 @@
         </div>
 
         <form action="">
-            <div class="p-6 bg-white rounded-lg w-auto flex flex-col gap-[18px]">
+            <div class="p-6 bg-white rounded-lg w-auto flex flex-col gap-[18px]" data-aos="fade-left">
                 <input type="nama" id="nama" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full p-2.5" placeholder="Nama" required>
                 <span class="flex flex-wrap lg:flex-nowrap gap-2">
                     <input type="email" id="email" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full lg:w-2/3 p-2.5" placeholder="Email kamu" required>
@@ -219,7 +218,7 @@
                 </span>
                 <textarea id="message" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full p-2.5 h-[135px]" placeholder="Pesan" required></textarea>
             </div>
-            <button type="submit" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm py-3 px-7 mt-3 text-center">Kirim</button>
+            <button type="submit" class="text-white bg-brown_B500 hover:bg-brownHover font-medium rounded-lg text-sm py-3 px-7 mt-3 text-center" data-aos="fade-up">Kirim</button>
         </form>
     </div>
 </section>
@@ -267,7 +266,7 @@
         centeredSlides: true,
         loop: true,
         autoplay: {
-            delay: 4000,
+            delay: 3000,
             disableOnInteraction: false,
         },
         pagination: {

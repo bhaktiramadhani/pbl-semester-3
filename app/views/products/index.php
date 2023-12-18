@@ -97,7 +97,7 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        <div class="space-x-10 self-center">
+        <div class="space-x-3 md:space-x-10 self-center mx-2">
             <button class="py-4 px-7 bg-brown_B600 rounded-[10px]">1</button>
             <button class="py-4 px-7 bg-brown_B300 rounded-[10px]">2</button>
             <button class="py-4 px-7 bg-brown_B300 rounded-[10px]">3</button>

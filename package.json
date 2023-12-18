@@ -6,6 +6,7 @@
     "dev": "npx tailwindcss -i public/css/input.css -o public/css/output.css --watch"
   },
   "dependencies": {
+    "@dartmoon/aos-responsive": "^1.0.1",
     "flowbite": "^2.2.0",
     "sweetalert2": "^11.10.1"
   }

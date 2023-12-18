@@ -15,8 +15,6 @@ class App
         if (!empty($url) && file_exists('../app/controllers/') . $url[0] . '.php') {
             $this->controller = ucwords($url[0]);
             unset($url[0]);
-            // $url = array_values($url);
-            // die;
         }
 
 

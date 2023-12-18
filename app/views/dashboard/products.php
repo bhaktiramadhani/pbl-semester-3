@@ -1,54 +1,40 @@
 <!-- bagian aside sebalah kiri -->
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r-4 border-black sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="<?= BASEURL; ?>/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                        <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                        <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                    </svg>
-                    <span class="ms-3">Dashboard</span>
+                    <img src="<?= BASEURL; ?>/images/icons/dashboard.svg" alt="dashboard logo">
+                    <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
                 </a>
             </li>
-
             <li>
                 <a href="<?= BASEURL; ?>/dashboard/products" class="flex items-center p-2 text-gray-900 rounded-lg  bg-gray-100 group">
-                    <svg class="w-5 h-5 transition duration-75 dark:text-gray-400 text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                        <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
+                    <img src="<?= BASEURL; ?>/images/icons/products.svg" alt="products logo">
+                    <span class="ms-3">Products</span>
                 </a>
             </li>
             <li>
                 <a href="<?= BASEURL; ?>/dashboard/best_seller" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                        <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                    </svg>
+                    <img src="<?= BASEURL; ?>/images/icons/best-seller.svg" alt="best-seller logo">
                     <span class="flex-1 ms-3 whitespace-nowrap">Best Seller</span>
                 </a>
             </li>
             <li>
                 <a href="<?= BASEURL; ?>/dashboard/testimoni" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                        <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                    </svg>
+                    <img src="<?= BASEURL; ?>/images/icons/testimoni.svg" alt="testimoni logo">
                     <span class="flex-1 ms-3 whitespace-nowrap">Testimoni</span>
                 </a>
             </li>
             <li>
                 <a href="<?= BASEURL; ?>/dashboard/profile" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                        <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                    </svg>
+                    <img src="<?= BASEURL; ?>/images/icons/profile.svg" alt="profile logo">
                     <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
                 </a>
             </li>
             <li>
                 <a href="<?= BASEURL; ?>/logout" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
-                    </svg>
+                    <img src="<?= BASEURL; ?>/images/icons/log-out.svg" alt="log-out logo">
                     <span class="flex-1 ms-3 whitespace-nowrap">Log Out</span>
                 </a>
             </li>
@@ -61,102 +47,111 @@
 
 
 <!-- konten utama -->
-<div class="p-4 sm:ml-64">
-    <div class="p-4 mt-14">
+<div class="sm:ml-64">
+    <div class="mt-14">
         <!-- semua produk dan tambah produk -->
         <section id="products">
-            <h1 class="font-bold text-[22px] mb-6">Products</h1>
-            <div class="pb-4 bg-white dark:bg-gray-900">
-                <label for="search" class="sr-only">Search</label>
-                <div class="relative mt-1 flex flex-wrap justify-between gap-4">
-                    <form action="<?= BASEURL; ?>/dashboard/products/" method="post" id="form-search">
-                        <input type="text" id="search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?= $data['keyword'] ?>">
-                    </form>
-                    <button data-modal-target="modal" data-modal-toggle="modal" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-produk">Tambah Produk</button>
-                </div>
-            </div>
-            <div class="relative overflow-x-auto p-4">
-
-                <table class="w-full text-sm text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                No
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Nama Produk
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Gambar
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Deskripsi
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Harga
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Kategori
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Link
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $id = 1; ?>
-                        <?php foreach ($data['products'] as $product) : ?>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <?= $id; ?>
-                                </th>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <?= $product['name']; ?>
-                                </th>
-                                <td class="px-6 py-4 ">
-                                    <img src="<?= BASEURL; ?>/images/produk/<?= $product['image']; ?>" alt="" class="w-40
+            <div class="relative overflow-x-auto px-8 py-6 bg-brown_B300 h-full">
+                <div class="bg-white">
+                    <div class="flex gap-2 py-3 px-4 border-b-2 border-black">
+                        <img src="<?= BASEURL; ?>/images/icons/hamburger.svg" alt="hamburger icon" data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" class="cursor-pointer sm:hidden">
+                        <h1 class="font-bold text-2xl">Products</h1>
+                    </div>
+                    <div class="py-10 px-12">
+                        <div class="bg-white dark:bg-gray-900">
+                            <label for="search" class="sr-only">Search</label>
+                            <div class="relative mt-1 flex flex-wrap justify-between gap-4">
+                                <form action="<?= BASEURL; ?>/dashboard/products/" method="post" id="form-search">
+                                    <input type="text" id="search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?= $data['keyword'] ?>">
+                                </form>
+                                <button data-modal-target="modal" data-modal-toggle="modal" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-produk">Tambah Produk</button>
+                            </div>
+                        </div>
+                        <div class="relative overflow-x-auto pt-7">
+                            <table class="w-full text-sm text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            No
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Nama Produk
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Gambar
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Deskripsi
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Harga
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Kategori
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Link
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $id = 1; ?>
+                                    <?php foreach ($data['products'] as $product) : ?>
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <?= $id; ?>
+                                            </th>
+                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <?= $product['name']; ?>
+                                            </th>
+                                            <td class="px-6 py-4 ">
+                                                <img src="<?= BASEURL; ?>/images/produk/<?= $product['image']; ?>" alt="" class="w-40
                                     ">
-                                </td>
-                                <td class="px-6 py-4">
-                                    <?= $product['description']; ?>
-                                </td>
-                                <td class="px-6 py-4">
-                                    Rp. <?= number_format($product['price'], 0, ',', '.') ?>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <?= $product['category_name']; ?>
-                                </td>
-                                <td class="px-6 py-4 flex flex-col items-center">
-                                    <a href="<?= $product['link_gojek']; ?>" target="_blank" data-tooltip-target="tooltip-gojek-<?= $id; ?>" class="block p-2 w-16 bg-[#01AA13] rounded-md">
-                                        <img src="<?= BASEURL; ?>/images/icons/gojek-logo.svg" alt="gojek logo">
-                                    </a>
-                                    <div id="tooltip-gojek-<?= $id; ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                        <?= $product['link_gojek']; ?>
-                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                    </div>
-                                    <br>
-                                    <a href="<?= $product['link_grab']; ?>" target="_blank" class="block p-2 w-16 bg-[#01AA13] rounded-md" data-tooltip-target="tooltip-grab-<?= $id; ?>" data-tooltip-placement="bottom">
-                                        <img src="<?= BASEURL; ?>/images/icons/grab-logo.png" alt="grab logo" width="64" height="17">
-                                    </a>
-                                    <div id="tooltip-grab-<?= $id; ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700 tooltip-bottom">
-                                        <?= $product['link_grab']; ?>
-                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                    </div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <?= $product['description']; ?>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                Rp. <?= number_format($product['price'], 0, ',', '.') ?>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <?= $product['category_name']; ?>
+                                            </td>
+                                            <td class="px-6 py-4 flex flex-col items-center">
+                                                <a href="<?= $product['link_gojek']; ?>" target="_blank" data-tooltip-target="tooltip-gojek-<?= $id; ?>" class="block p-2 w-16 bg-[#01AA13] rounded-md">
+                                                    <img src="<?= BASEURL; ?>/images/icons/gojek-logo.svg" alt="gojek logo">
+                                                </a>
+                                                <div id="tooltip-gojek-<?= $id; ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    <?= $product['link_gojek']; ?>
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
+                                                <br>
+                                                <a href="<?= $product['link_grab']; ?>" target="_blank" class="block p-2 w-16 bg-[#01AA13] rounded-md" data-tooltip-target="tooltip-grab-<?= $id; ?>" data-tooltip-placement="bottom">
+                                                    <img src="<?= BASEURL; ?>/images/icons/grab-logo.png" alt="grab logo" width="64" height="17">
+                                                </a>
+                                                <div id="tooltip-grab-<?= $id; ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700 tooltip-bottom">
+                                                    <?= $product['link_grab']; ?>
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
 
-                                </td>
-                                <td class="px-6 py-4 space-y-2">
-                                    <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block edit-produk" data-id="<?= $product['id_products']; ?>">Edit</a>
-                                    <a href="#" class="font-medium text-white bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg inline-block delete-product" data-id="<?= $product['id_products']; ?>" data-name="<?= $product['name']; ?>">Hapus</a>
-                                </td>
-                            </tr>
-                            <?php $id++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                            </td>
+                                            <td class="px-6 py-4 space-y-2">
+                                                <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block edit-produk" data-id="<?= $product['id_products']; ?>">Edit</a>
+                                                <a href="#" class="font-medium text-white bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg inline-block delete-product" data-id="<?= $product['id_products']; ?>" data-name="<?= $product['name']; ?>">Hapus</a>
+                                            </td>
+                                        </tr>
+                                        <?php $id++; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
 
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </section>
@@ -233,7 +228,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="http://localhost/chemaraya/public/js/handleProducts.js">
+<script src="<?= BASEURL; ?>/js/handleProducts.js">
 </script>
 
 <!-- menginisiasi flashnya -->

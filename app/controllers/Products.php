@@ -17,6 +17,11 @@ class Products extends Controller
     public function detail($id)
     {
         $data['product'] = $this->model('Product_model')->getProductById($id);
+        if (!$data['product']) {
+            $this->view('templates/header');
+            $this->view('templates/notfound');
+            exit;
+        }
         $this->view('templates/header');
         $this->view('templates/home_header');
         $this->view('products/detail', $data);

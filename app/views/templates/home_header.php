@@ -23,16 +23,16 @@
                         <a href="#menu" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Menu</a>
                     </li>
                     <li>
-                        <a href="#about" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">About Brand</a>
+                        <a href="#about-brand" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">About Brand</a>
                     </li>
                     <li>
-                        <a href="#" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">History</a>
+                        <a href="#history" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">History</a>
                     </li>
                     <li>
-                        <a href="#" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Testimoni</a>
+                        <a href="#testimoni" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Testimoni</a>
                     </li>
                     <li>
-                        <a href="#" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Contact Us</a>
+                        <a href="#contact-us" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Contact Us</a>
                     </li>
                     <li>
                         <a href="<?= BASEURL; ?>/login" class="flex justify-center md:hidden gap-2 py-1 px-4 text-white rounded">
