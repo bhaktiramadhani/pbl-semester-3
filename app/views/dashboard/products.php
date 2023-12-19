@@ -61,38 +61,43 @@
                         <div class="bg-white dark:bg-gray-900">
                             <label for="search" class="sr-only">Search</label>
                             <div class="relative mt-1 flex flex-wrap justify-between gap-4">
-                                <form action="<?= BASEURL; ?>/dashboard/products/" method="post" id="form-search">
-                                    <input type="text" id="search" name="keyword" class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-60 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?= $data['keyword'] ?>">
+                                <form action="<?= BASEURL; ?>/dashboard/products/" method="post" id="form-search" class="relative">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-black dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="search" name="keyword" class="block pl-8 pt-2 text-sm text-gray-900 border border-black rounded-[3px] w-60 bg-gray-50  placeholder:text-black focus:ring-0 focus:border-black" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?= $data['keyword'] ?>">
                                 </form>
-                                <button data-modal-target="modal" data-modal-toggle="modal" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-produk">Tambah Produk</button>
+                                <button data-modal-target="modal" data-modal-toggle="modal" class="text-white bg-brown hover:bg-brownHover font-medium rounded-[3px] text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-produk">Tambah Produk <img src="<?= BASEURL; ?>/images/icons/plus.svg" alt="icon plus" class="inline ml-7"></button>
                             </div>
                         </div>
                         <div class="relative overflow-x-auto pt-7">
-                            <table class="w-full text-sm text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-sm text-gray-500 dark:text-gray-400 border-separate border-spacing-1">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             No
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             Nama Produk
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             Gambar
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             Deskripsi
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             Harga
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             Kategori
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-[#FFE192]">
                                             Link
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="w-[10%] px-6 py-3 bg-[#FFE192]">
                                             Action
                                         </th>
                                     </tr>
@@ -139,8 +144,8 @@
 
                                             </td>
                                             <td class="px-6 py-4 space-y-2">
-                                                <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-brown hover:bg-brownHover py-2 px-4 rounded-lg inline-block edit-produk" data-id="<?= $product['id_products']; ?>">Edit</a>
-                                                <a href="#" class="font-medium text-white bg-red-600 hover:bg-red-500 py-2 px-4 rounded-lg inline-block delete-product" data-id="<?= $product['id_products']; ?>" data-name="<?= $product['name']; ?>">Hapus</a>
+                                                <a href="#" data-modal-target="modal" data-modal-toggle="modal" class="font-medium text-white bg-green_G400 text-center w-[77px] py-2 px-4 rounded-lg inline-block edit-produk" data-id="<?= $product['id_products']; ?>">Edit</a>
+                                                <a href="#" class="font-medium text-white bg-pink_P500 text-center w-[77px] py-2 px-4 rounded-lg inline-block delete-product" data-id="<?= $product['id_products']; ?>" data-name="<?= $product['name']; ?>">Hapus</a>
                                             </td>
                                         </tr>
                                         <?php $id++; ?>

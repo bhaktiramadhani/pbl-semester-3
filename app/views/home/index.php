@@ -1,15 +1,17 @@
 <section id="home">
-    <!-- Swiper -->
-    <div class="swiper carouselSwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="images/1.png" alt="1">
-            </div>
-            <div class="swiper-slide">
-                <img src="images/2.png" alt="2">
-            </div>
-            <div class="swiper-slide">
-                <img src="images/3.png" alt="3">
+    <div class="2xl:mx-auto">
+        <!-- Swiper -->
+        <div class="swiper carouselSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="images/1.png" alt="1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/2.png" alt="2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/3.png" alt="3">
+                </div>
             </div>
         </div>
     </div>
@@ -262,7 +264,7 @@
     });
 
     const carouselSwiper = new Swiper(".carouselSwiper", {
-        spaceBetween: 30,
+        spaceBetween: 5,
         centeredSlides: true,
         loop: true,
         autoplay: {

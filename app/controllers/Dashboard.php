@@ -16,6 +16,7 @@ class Dashboard extends Controller
         $data['categorys'] = $this->model('Category_model')->getAllCountCategory();
         $data['best_seller'] = $this->model('BestSeller_model')->getAllBestSeller();
         $data['testimoni'] = $this->model('Testimoni_model')->getAllTestimoni();
+        $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
 
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
@@ -44,6 +45,7 @@ class Dashboard extends Controller
             $data['products'] = $this->model('Product_model')->getAllProduct();
         }
         $data['categorys'] = $this->model('Category_model')->getAllCategory();
+        $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
         $this->view('dashboard/products', $data);
@@ -169,8 +171,10 @@ class Dashboard extends Controller
 
         $data['username'] = $_SESSION['username'];
         $data['title'] = "Best Seller";
+        $data['keyword'] = '';
         $data['products'] = $this->model('Product_model')->getAllProduct();
         $data['best_seller'] = $this->model('BestSeller_model')->getAllBestSeller();
+        $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
 
 
         $this->view('templates/header', $data);
@@ -277,7 +281,9 @@ class Dashboard extends Controller
         }
         $data['username'] = $_SESSION['username'];
         $data['title'] = "Dashboard";
+        $data['keyword'] = "";
         $data['testimonis'] = $this->model('Testimoni_model')->getAllTestimoni();
+        $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
         $this->view('dashboard/testimoni', $data);
@@ -378,11 +384,76 @@ class Dashboard extends Controller
 
     public function profile()
     {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
         $data['username'] = $_SESSION['username'];
         $data['title'] = "Dashboard";
+        $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
         $this->view('dashboard/profile', $data);
         $this->view('templates/footer');
+    }
+
+    public function editProfile()
+    {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $username = htmlspecialchars($_POST['username']);
+            $password_lama = htmlspecialchars($_POST['password-lama']);
+            $user_id = htmlspecialchars($_POST['user-id']);
+            $password_baru = htmlspecialchars($_POST['password-baru']);
+
+            $error = $_FILES['image']['error'];
+
+            if ($error === 4) {
+                $image = $_POST['image-name'];
+            } else {
+                $image = Upload::uploadImage('users', 'users');
+                Upload::deleteImage('users', $_POST['image-name']);
+            }
+
+            if (!empty($password_lama) && !empty($password_baru)) {
+                // getuser by username menggunakan Auth_model
+                $user = $this->model('Auth_model')->getUserByUsername($username);
+                if (!password_verify($password_lama, $user['password'])) {
+                    Flasher::setFlash('Password Lama Salah', 'silahkan masukkan password dengan benar!', 'error');
+                    header('location: ' . BASEURL . '/dashboard/profile');
+                    die;
+                }
+
+                $data = [
+                    'username' => $username,
+                    'image' => $image,
+                    'password' => $password_baru,
+                    'user_id' => $user_id,
+                ];
+            } else {
+                $data = [
+                    'username' => $username,
+                    'image' => $image,
+                    'user_id' => $user_id,
+                ];
+            }
+
+
+            if ($this->model('User_model')->editProfile($data) > 0) {
+                $_SESSION['username'] = $username;
+                Flasher::setFlash('data profile', 'berhasil diupdate', 'success');
+                header('Location: ' . BASEURL . '/dashboard/profile');
+                exit;
+            } else {
+                Flasher::setFlash('data profile', 'gagal diupdate', 'error');
+                header('Location: ' . BASEURL . '/dashboard/profile');
+                exit;
+            }
+        }
     }
 }

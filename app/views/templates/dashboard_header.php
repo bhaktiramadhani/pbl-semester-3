@@ -10,8 +10,8 @@
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
                     <div class="flex items-center gap-3">
-                        <img class="w-8 h-8 rounded-full" src="<?= BASEURL; ?>/images/user.jpg" alt="user photo">
-                        <span class="text-white text-sm font-light">Halo, <?= $data['username']; ?></span>
+                        <img class="w-8 h-8 rounded-full object-cover" src="<?= BASEURL; ?>/images/users/<?= $data['user']['image'] ?>" alt="user photo">
+                        <span class="text-white text-sm font-light">Halo, <?= $data['user']['username']; ?></span>
                     </div>
                 </div>
             </div>
