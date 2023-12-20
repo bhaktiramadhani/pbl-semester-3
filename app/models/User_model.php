@@ -23,6 +23,13 @@ class User_model
         return $this->db->single();
     }
 
+    public function getUserById($id)
+    {
+        $this->db->query("SELECT * FROM $this->table WHERE user_id = :user_id");
+        $this->db->bind('user_id', $id);
+        return $this->db->single();
+    }
+
     public function editProfile($data)
     {
 
@@ -51,6 +58,49 @@ class User_model
             $this->db->execute();
         }
 
+
+        return $this->db->rowCount();
+    }
+
+    public function hapusAkun($id)
+    {
+        $user = $this->getUserById($id);
+        $this->db->query("DELETE FROM $this->table WHERE user_id = :user_id");
+        $this->db->bind('user_id', $id);
+        $this->db->execute();
+
+        if ($this->db->rowCount() > 0) {
+            Upload::deleteImage('users', $user['image']);
+        }
+        return $this->db->rowCount();
+    }
+
+    public function tambahAkun($data)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $time = date("Y-m-d H:i:s", time());
+        $this->db->query("INSERT INTO $this->table VALUES ('', :image, :email, :username, :password, :is_active, '', '', :req_date)");
+        $this->db->bind('image', $data['image']);
+        $this->db->bind('email', $data['email']);
+        $this->db->bind('username', $data['username']);
+        $this->db->bind('password', $data['password']);
+        $this->db->bind('is_active', $data['is_active']);
+        $this->db->bind('req_date', $time);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function editAkun($data)
+    {
+        $this->db->query("UPDATE $this->table SET email = :email, image = :image, username = :username, password = :password, is_active = :is_active WHERE user_id = :user_id");
+        $this->db->bind('email', $data['email']);
+        $this->db->bind('image', $data['image']);
+        $this->db->bind('username', $data['username']);
+        $this->db->bind('password', $data['password']);
+        $this->db->bind('is_active', $data['is_active']);
+        $this->db->bind('user_id', $data['user_id']);
+        $this->db->execute();
 
         return $this->db->rowCount();
     }

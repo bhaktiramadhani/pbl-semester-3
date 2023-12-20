@@ -20,6 +20,7 @@ class Dashboard extends Controller
 
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
+        $this->view('templates/sidebar', $data);
         $this->view('dashboard/index', $data);
         $this->view('templates/footer');
     }
@@ -48,6 +49,7 @@ class Dashboard extends Controller
         $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
+        $this->view('templates/sidebar', $data);
         $this->view('dashboard/products', $data);
         $this->view('templates/footer');
     }
@@ -179,6 +181,7 @@ class Dashboard extends Controller
 
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
+        $this->view('templates/sidebar', $data);
         $this->view('dashboard/best_seller', $data);
         $this->view('templates/footer');
     }
@@ -270,6 +273,16 @@ class Dashboard extends Controller
 
         echo json_encode($this->model('Testimoni_model')->getTestimoniById($_POST['id']));
     }
+    public function getEditAkun()
+    {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+
+        echo json_encode($this->model('User_model')->getUserById($_POST['id']));
+    }
 
 
     public function testimoni()
@@ -286,6 +299,7 @@ class Dashboard extends Controller
         $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
+        $this->view('templates/sidebar', $data);
         $this->view('dashboard/testimoni', $data);
         $this->view('templates/footer');
     }
@@ -381,6 +395,145 @@ class Dashboard extends Controller
         }
     }
 
+    public function akun()
+    {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+        $data['username'] = $_SESSION['username'];
+        $data['title'] = "Dashboard";
+        $data['keyword'] = "";
+        $data['users'] = $this->model('User_model')->getAllUser();
+        $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
+        $this->view('templates/header', $data);
+        $this->view('templates/dashboard_header', $data);
+        $this->view('templates/sidebar', $data);
+        $this->view('dashboard/akun', $data);
+        $this->view('templates/footer');
+    }
+
+    public function hapus_akun($id)
+    {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+
+        if ($this->model('User_model')->hapusAkun($id) > 0) {
+            Flasher::setFlash('data akun ', 'berhasil dihapus', 'success');
+            header('Location: ' . BASEURL . '/dashboard/akun');
+            exit;
+        } else {
+            Flasher::setFlash('data akun', 'gagal dihapus', 'error');
+            header('Location: ' . BASEURL . '/dashboard/akun');
+            exit;
+        }
+    }
+
+    public function tambah_akun()
+    {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $email = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
+            $username = htmlspecialchars($_POST['username']);
+            $image = Upload::uploadImage('users', 'users');
+            $is_active = htmlspecialchars($_POST['is_active']);
+            $users = $this->model('User_model')->getAllUser();
+
+            // hashing password
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+            foreach ($users as $user) {
+                if ($user['email'] == $email) {
+                    Flasher::setFlash('email', 'sudah digunakan', 'error');
+                    header('Location: ' . BASEURL . '/dashboard/akun');
+                    exit;
+                }
+                if ($user['username'] == $username) {
+                    Flasher::setFlash('username', 'sudah digunakan', 'error');
+                    header('Location: ' . BASEURL . '/dashboard/akun');
+                    exit;
+                }
+            }
+
+            $data = [
+                'email' => $email,
+                'password' => $password_hash,
+                'username' => $username,
+                'image' => $image,
+                'is_active' => $is_active
+            ];
+
+            if ($image) {
+                if ($this->model('User_model')->tambahAkun($data) > 0) {
+                    Flasher::setFlash('data akun ', 'berhasil ditambahkan', 'success');
+                    header('Location: ' . BASEURL . '/dashboard/akun');
+                } else {
+                    Flasher::setFlash('data akun', 'gagal ditambahkan', 'error');
+                    header('Location: ' . BASEURL . '/dashboard/akun');
+                }
+            }
+        }
+    }
+
+    public function edit_akun()
+    {
+        if (!isset($_SESSION['username'])) {
+            Flasher::setFlash('Login Gagal', 'Anda harus login terlebih dahulu', 'info');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // $email = htmlspecialchars($_POST['email']);
+            $username = htmlspecialchars($_POST['username']);
+            $is_active = htmlspecialchars($_POST['is_active']);
+            $user_id = htmlspecialchars($_POST['user_id']);
+            $users = $this->model('User_model')->getUserById($user_id);
+            if (empty($password)) {
+                $password = $users['password'];
+            } else {
+                $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+            }
+
+            $error = $_FILES['image']['error'];
+            if ($error === 4) {
+                $image = $_POST['image-name'];
+            } else {
+                $image = Upload::uploadImage('users', 'users');
+                Upload::deleteImage('users', $_POST['image-name']);
+            }
+
+            $data = [
+                'email' => $users['email'],
+                'password' => $password,
+                'username' => $username,
+                'image' => $image,
+                'is_active' => $is_active,
+                'user_id' => $user_id
+            ];
+
+            if ($this->model('User_model')->editAkun($data) > 0) {
+                Flasher::setFlash('data akun ', 'berhasil diupdate', 'success');
+                header('Location: ' . BASEURL . '/dashboard/akun');
+                exit;
+            } else {
+                Flasher::setFlash('data akun', 'gagal diupdate', 'error');
+                header('Location: ' . BASEURL . '/dashboard/akun');
+                exit;
+            }
+        }
+    }
+
 
     public function profile()
     {
@@ -394,6 +547,7 @@ class Dashboard extends Controller
         $data['user'] = $this->model('User_model')->getUserByUsername($_SESSION['username']);
         $this->view('templates/header', $data);
         $this->view('templates/dashboard_header', $data);
+        $this->view('templates/sidebar', $data);
         $this->view('dashboard/profile', $data);
         $this->view('templates/footer');
     }
