@@ -494,7 +494,7 @@ class Dashboard extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // $email = htmlspecialchars($_POST['email']);
+            $email = htmlspecialchars($_POST['email']);
             $username = htmlspecialchars($_POST['username']);
             $is_active = htmlspecialchars($_POST['is_active']);
             $user_id = htmlspecialchars($_POST['user_id']);
@@ -503,6 +503,18 @@ class Dashboard extends Controller
                 $password = $users['password'];
             } else {
                 $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+            }
+
+            if ($email == $users['email']) {
+                Flasher::setFlash('email sudah ada', 'silahkan masukkan email yang belum ada', 'error');
+                header('Location: ' . BASEURL . '/dashboard/akun');
+                exit;
+            }
+
+            if ($username == $users['username']) {
+                Flasher::setFlash('username sudah ada', 'silahkan masukkan username yang belum ada', 'error');
+                header('Location: ' . BASEURL . '/dashboard/akun');
+                exit;
             }
 
             $error = $_FILES['image']['error'];

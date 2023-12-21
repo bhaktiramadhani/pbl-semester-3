@@ -22,7 +22,7 @@ class Login extends Controller
             $username = $_POST['username'];
             $password = $_POST['password'];
             // getuser by username menggunakan Auth_model
-            $user = $this->model('Auth_model')->getUserByUsername($username);
+            $user = $this->model('User_model')->getUserByUsername($username);
 
             // apabila username tidak ditemukan
             if (!$user) {
@@ -31,12 +31,23 @@ class Login extends Controller
                 die;
             }
 
+
+
             // apabila username ditemukan
             if ($user && password_verify($password, $user['password'])) {
+
+                // apabila akun tidak aktif
+                if ($user['is_active'] == 0) {
+                    Flasher::setFlash('Akun anda nonaktif', 'silahkan hubungi admin untuk mengaktifkan!', 'error');
+                    header('location: ../login');
+                    die;
+                }
+
                 $_SESSION['username'] = $username;
                 Flasher::setFlash('Anda berhasil login', '', 'success');
                 header('location: ../dashboard');
             } else {
+                // apabila password salah
                 Flasher::setFlash('Password Salah', 'silahkan masukkan password dengan benar!', 'error');
                 header('location: ../login');
                 die;

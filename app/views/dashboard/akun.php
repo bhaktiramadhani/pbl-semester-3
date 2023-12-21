@@ -21,7 +21,7 @@
                                     </div>
                                     <input type="text" id="search" name="keyword" class="block pl-8 pt-2 text-sm text-gray-900 border border-black rounded-[3px] w-60 bg-gray-50  placeholder:text-black focus:ring-0 focus:border-black" placeholder="Cari Produk..." autofocus autocomplete="off" value="<?= $data['keyword'] ?>">
                                 </form>
-                                <button data-modal-target="modal" data-modal-toggle="modal" class="tambah-best-seller text-white bg-brown hover:bg-brownHover font-medium rounded-[3px] text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-testimoni">Tambah Akun <img src="<?= BASEURL; ?>/images/icons/plus.svg" alt="icon plus" class="inline ml-7"></button>
+                                <button data-modal-target="modal" data-modal-toggle="modal" class="tambah-akun text-white bg-brown hover:bg-brownHover font-medium rounded-[3px] text-sm w-auto sm:w-auto px-5 py-2.5 text-center transition-all duration-200 ease-in-out tambah-testimoni">Tambah Akun <img src="<?= BASEURL; ?>/images/icons/plus.svg" alt="icon plus" class="inline ml-7"></button>
                             </div>
                         </div>
                         <div class="relative overflow-x-auto">
@@ -167,6 +167,9 @@
             $("#modal-img").addClass("hidden");
             $("#modal-img").attr("src", "");
             $("#form-akun").attr("action", "tambah_akun");
+            $('#password').attr("required", '');
+            $('#email').removeAttr('disabled')
+            $('#email').removeClass('cursor-not-allowed')
 
             $("#email").val("");
             $('#username').val('');

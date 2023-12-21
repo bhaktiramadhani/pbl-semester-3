@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/images/favicon.ico">
     <title>Chemaraya <?php if (isset($data['title'])) echo " | " . $data['title'] ?></title>
     <link rel="stylesheet" href="<?= BASEURL ?>/css/flowbite.css">
     <link rel="stylesheet" href="<?= BASEURL ?>/css/output.css">
