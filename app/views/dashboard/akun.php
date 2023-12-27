@@ -156,7 +156,7 @@
                 cancelButtonText: "tidak",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = `http://localhost/chemaraya/dashboard/hapus_akun/${id}`;
+                    window.location.href = `<?= BASEURL; ?>/dashboard/hapus_akun/${id}`;
                 }
             });
         });
@@ -187,7 +187,7 @@
             $('#email').addClass('cursor-not-allowed')
 
             $.ajax({
-                url: "http://localhost/chemaraya/dashboard/getEditAkun",
+                url: "<?= BASEURL; ?>/dashboard/getEditAkun",
                 data: {
                     id: id,
                 },
@@ -197,7 +197,7 @@
                     $("#name").val(data.name);
                     $("#modal-img").attr(
                         "src",
-                        `http://localhost/chemaraya/images/users/${data.image}`
+                        `<?= BASEURL; ?>/images/users/${data.image}`
                     );
                     $("#email").val(data.email);
                     console.log(data);

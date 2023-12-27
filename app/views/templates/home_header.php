@@ -35,16 +35,16 @@
                         <a href="#contact-us" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Contact Us</a>
                     </li>
                     <li>
-                        <a href="<?= BASEURL; ?>/login" class="flex justify-center md:hidden gap-2 py-1 px-4 text-white rounded">
+                        <a href="#" class="login-button flex justify-center md:hidden gap-2 py-1 px-4 text-white rounded">
                             <img src="images/icons/account.svg" alt="icon login"></a>
                     </li>
                 </ul>
             </div>
-            <a href="<?= BASEURL; ?>/login" class="hidden md:block" data-tooltip-target="tooltip-to-login">
+            <a href="#" class="login-button hidden md:block" data-tooltip-target="tooltip-to-login">
                 <img src="<?= BASEURL; ?>/images/icons/account.svg" alt="Login logo">
             </a>
             <div id="tooltip-to-login" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-                Login
+                Login Admin
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
         </div>

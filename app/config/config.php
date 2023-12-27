@@ -1,5 +1,5 @@
 <?php
-define('BASEURL', 'http://localhost/chemaraya');
+define('BASEURL', 'http://192.168.100.7/chemaraya');
 
 
 // DB

@@ -114,7 +114,11 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        <a href="products" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm py-5 px-14 mt-16 self-center">Show More</a>
+        <?php
+        if (count($data['products']) == 10) {
+            echo '<a href="products" class="text-white bg-brown hover:bg-brownHover font-medium rounded-lg text-sm py-5 px-14 mt-16 self-center">Show More</a>';
+        }
+        ?>
     </div>
 </section>
 
@@ -123,14 +127,14 @@
         <h2 class="text-3xl md:text-[32px] text-center font-bold">ABOUT BRAND</h2>
         <div class="bg-brown_B200 mt-10 py-7 px-10 lg:px-[100px] flex flex-wrap lg:flex-nowrap items-center justify-center gap-[53px]">
             <span class="space-y-5 text-lg lg:text-2xl font-normal my-[14px] order-2 lg:order-1">
-                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="2000">
                     Chemaraya Roti Bakar Bandung berdiri sejak tahun 2021 ketika Indonesia mengalami pandemi Covid-19. Bermula dari sang pemilik dan istrinya sangat menyukai Roti Bakar Bandung, namun ketika membeli Roti Bakar Bandung di outlet lain, beliau merasa ada yang kurang seperti dari segi rasa dan tingkat kematangannya. Akhirnya beliau mencoba untuk membuat Roti Bakar tersebut dan membuka outlet dengan nama “Chemaraya Roti Bakar Bandung”.
                 </p>
-                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="2000">
                     Dengan menambahkan beberapa varian atau rasa yang mungkin belum ada dibuat dari outlet lainnya, membuat Chemaraya Roti Bakar Bandung berbeda dengan outlet lainnya.
                 </p>
             </span>
-            <img src="images/about-brand.png" alt="about brand image" class='h-[450px] order-1 lg:order-2'>
+            <img src="images/about-brand.png" alt="about brand image" class='h-[450px] order-1 lg:order-2' data-aos="zoom-in" data-aos-duration="2000">
         </div>
     </div>
 </section>
@@ -139,12 +143,12 @@
     <div class="w-full mt-[120px]">
         <h2 class="text-3xl md:text-[32px] text-center font-bold">HISTORY OF “ROTI BAKAR BANDUNG”</h2>
         <div class="bg-brown_B200 mt-10 py-7 px-10 lg:px-[100px] flex flex-wrap lg:flex-nowrap items-center justify-center gap-[53px]">
-            <img src="images/history.png" alt="history image" class='h-[480px]'>
+            <img src="images/history.png" alt="history image" class='h-[480px]' data-aos="zoom-in" data-aos-duration="2000">
             <span class="space-y-5 text-lg lg:text-2xl font-normal my-[14px]">
-                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="2000">
                     Roti bakar menjadi hidangan khas di Kota Bandung, dengan masuknya tepung terigu yang diperkenalkan oleh bangsa Belanda. Sejarahnya dimulai dengan adanya foodscape atau bentang makanan, terutama setelah tepung terigu dari gandum, ragi, dan mentega memasuki kota Bandung. Perubahan ini dipengaruhi oleh akulturasi yang beragam di bawah pemerintahan Hindia Belanda. Pemerintahan Belanda juga tidak hanya membawa bahan baku beragam ke Kota Bandung, tetapi juga peralatan memasak seperti loyang dan teknik memasak dengan oven.
                 </p>
-                <p class="indent-12" data-aos="fade-up" data-aos-duration="1000">
+                <p class="indent-12" data-aos="fade-up" data-aos-duration="2000">
                     Roti bakar pun semakin dikenal, dihidangkan di Warung Kopi Purnama di Jalan Alkateri yang dikenal sebagai salah satu kedai kopi legendaris dan ikon wisata heritage di Kota Bandung.
                 </p>
             </span>
@@ -156,7 +160,7 @@
     <div class="w-full mx-auto max-w-7xl my-[80px] px-10 lg:px-[100px]">
         <h2 class="text-3xl md:text-[32px] text-center font-bold mb-10">TESTIMONI</h2>
         <div class="swiper mySwiper">
-            <div class="swiper-wrapper" data-aos="fade-up" data-aos-duration="1000">
+            <div class="swiper-wrapper" data-aos="zoom-in" data-aos-duration="2000">
                 <?php foreach ($data['testimonis'] as $testimoni) : ?>
                     <div class="swiper-slide text-center w-full flex flex-col items-center justify-center">
                         <img class="mx-auto w-[168px] h-[168px] rounded-full" src="images/testimoni/<?= $testimoni['image'] ?>" alt="<?= $testimoni['name'] ?>">
@@ -172,21 +176,21 @@
 
 <section id="banner">
     <div class="bg-brown_B300 w-full h-auto px-10 md:px-[100px] py-14 flex justify-between flex-wrap gap-y-20">
-        <div class="flex items-center gap-2" data-aos="fade-up">
+        <div class="flex items-center gap-2" data-aos="fade-up" data-aos-duration="2000">
             <img src="images/banner-1.svg" alt="banner-1" width="67" height="67">
             <div class="flex flex-col mt-4">
                 <h2 class="font-bold text-2xl">Harga Terjangkau</h2>
                 <p class="font-normal text-base">Ramah dikantong</p>
             </div>
         </div>
-        <div class="flex items-center gap-2" data-aos="fade-up">
+        <div class="flex items-center gap-2" data-aos="fade-up" data-aos-duration="2000">
             <img src="images/banner-2.svg" alt="banner-2" width="67" height="67">
             <div class="flex flex-col">
                 <h2 class="font-bold text-2xl">Rasa yang Lezat</h2>
                 <p class="font-normal text-base">Tingkat kematangan yang sempurna</p>
             </div>
         </div>
-        <div class="flex items-center gap-4" data-aos="fade-up">
+        <div class="flex items-center gap-4" data-aos="fade-up" data-aos-duration="2000">
             <img src="images/banner-3.svg" alt="banner-3" width="50" height="30">
             <div class="flex flex-col">
                 <h2 class="font-bold text-2xl">Pelayanan Terbaik</h2>
@@ -212,7 +216,7 @@
         </div>
 
         <form action="">
-            <div class="p-6 bg-white rounded-lg w-auto flex flex-col gap-[18px]" data-aos="fade-left">
+            <div class="p-6 bg-white rounded-lg w-auto flex flex-col gap-[18px]" data-aos="fade-left" data-aos-duration="2000">
                 <input type="nama" id="nama" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full p-2.5" placeholder="Nama" required>
                 <span class="flex flex-wrap lg:flex-nowrap gap-2">
                     <input type="email" id="email" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full lg:w-2/3 p-2.5" placeholder="Email kamu" required>
@@ -234,6 +238,15 @@
         });
         $('#navbar-default ul li').on('click', function() {
             $('#navbar-default').addClass('hidden');
+        })
+        $('.login-button').on('click', function() {
+            Swal.fire({
+                title: `Menuju Halaman Login`,
+                text: 'Perhatian!! halaman ini hanya untuk admin!',
+                icon: "warning",
+            }).then((result) => {
+                document.location.href = "<?= BASEURL; ?>/login";
+            });
         })
     })
 </script>

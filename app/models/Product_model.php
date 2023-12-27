@@ -18,6 +18,15 @@ class Product_model
         return $this->db->resultSet();
     }
 
+    public function getAllProductByLimit($limit)
+    {
+        $this->db->query("SELECT products.*, category.category_name
+                            FROM $this->table
+                            JOIN category on products.id_category = category.id_category
+                            LIMIT $limit");
+        return $this->db->resultSet();
+    }
+
     public function getProductById($id)
     {
         $this->db->query("SELECT products.*, category.category_name

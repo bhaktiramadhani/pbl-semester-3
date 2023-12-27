@@ -41,7 +41,7 @@ class ForgotPassword extends Controller
         $data = [
             'email' => $email,
             'token' => $token,
-            'expired' => $expired
+            'token_exp' => $expired
         ];
 
         if ($this->model('User_model')->resetPassword($data) > 0) {
@@ -72,7 +72,7 @@ class ForgotPassword extends Controller
             $mail->Subject = 'Reset Password From Chemaraya';
             $mail->Body    = '<h1>Click the link below to reset your password</h1>
                                 <br>
-                                <a href="http://localhost/chemaraya/ForgotPassword/reset_password/' . $email . '/' . $token . '">Reset Password</a>';
+                                <a href="' . BASEURL . '/ForgotPassword/reset_password/' . $email . '/' . $token . '">Reset Password</a>';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

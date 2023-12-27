@@ -9,6 +9,7 @@ class Login extends Controller
             header("location: " . BASEURL . "/dashboard");
         }
 
+
         $data['title'] = "Login";
         $this->view('templates/header', $data);
         $this->view('login/index');

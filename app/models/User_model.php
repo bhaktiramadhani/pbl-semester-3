@@ -84,15 +84,15 @@ class User_model
 
     public function tambahAkun($data)
     {
-        date_default_timezone_set('Asia/Jakarta');
+        date_default_timezone_set('Asia/Makassar');
         $time = date("Y-m-d H:i:s", time());
-        $this->db->query("INSERT INTO $this->table VALUES ('', :image, :email, :username, :password, :is_active, '', '', :req_date)");
+        $this->db->query("INSERT INTO $this->table VALUES ('', :image, :email, :username, :password, :is_active, NULL, NULL, :reg_date)");
         $this->db->bind('image', $data['image']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
         $this->db->bind('is_active', $data['is_active']);
-        $this->db->bind('req_date', $time);
+        $this->db->bind('reg_date', $time);
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -125,9 +125,27 @@ class User_model
 
     public function editPassword($data)
     {
-        $this->db->query("UPDATE $this->table SET password = :password,token = '', token_exp = '' WHERE email = :email");
+        $this->db->query("UPDATE $this->table SET password = :password,token = NULL, token_exp = NULL WHERE email = :email");
         $this->db->bind('password', $data['password']);
         $this->db->bind('email', $data['email']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function register($data)
+    {
+        // make time in wita
+
+        date_default_timezone_set('Asia/Makassar');
+        $time = date("Y-m-d H:i:s", time());
+        $this->db->query("INSERT INTO $this->table VALUES ('', :image, :email, :username, :password, :is_active, NULL, NULL, :reg_date)");
+        $this->db->bind('image', $data['image']);
+        $this->db->bind('email', $data['email']);
+        $this->db->bind('username', $data['username']);
+        $this->db->bind('password', $data['password']);
+        $this->db->bind('is_active', $data['is_active']);
+        $this->db->bind('reg_date', $time);
         $this->db->execute();
 
         return $this->db->rowCount();
