@@ -1,4 +1,5 @@
 <footer>
+    <hr>
     <div class="w-full px-10 md:px-[100px] pt-12 pb-6 flex flex-col gap-10 lg:flex-row items-center">
         <div class="w-full lg:w-1/3 space-y-[55px]" data-aos="fade-up" data-aos-duration="2000">
             <img src="<?= BASEURL; ?>/images/logo/logo-chemaraya.svg" alt="logo" width="78">

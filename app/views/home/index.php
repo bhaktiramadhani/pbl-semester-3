@@ -89,11 +89,13 @@
                 <?php foreach ($data['products'] as $product) : ?>
                     <a href="products/detail/<?= $product['id_products']; ?>" class="py-3 bg-[#FCDFD7] transform cursor-pointer rounded-md group overflow-hidden" data-aos="fade-up" data-aos-duration="2000">
                         <img src="images/produk/<?= $product['image'] ?>" alt="" class="transition-all ease-in-out overflow-hidden w-full group-hover:scale-110">
-                        <hr class="h-px absolute left-0 bottom-0" style="background-color: black;">
-                        <div class="flex flex-col my-5 ml-[13px] gap-3 absolute left-0 bottom-0">
-                            <h3 class="font-bold text-xs sm:text-base text-brown_B700"><?= $product['name'] ?></h3>
-                            <span class="text-[10px] sm:text-xs text-brown_B500"><?= $product['category_name'] ?></span>
-                            <span class="font-bold text-xs sm:text-base text-brown_B700">Rp. <?= number_format($product['price'], 0, ',', '.') ?></span>
+                        <div class="w-full absolute left-0 bottom-0">
+                            <hr class="w-full border-black">
+                            <div class="flex flex-col my-5 gap-3 pl-[13px]">
+                                <h3 class="font-bold text-xs sm:text-base text-brown_B700"><?= $product['name'] ?></h3>
+                                <span class="text-[10px] sm:text-xs text-brown_B500"><?= $product['category_name'] ?></span>
+                                <span class="font-bold text-xs sm:text-base text-brown_B700">Rp. <?= number_format($product['price'], 0, ',', '.') ?></span>
+                            </div>
                         </div>
                         <div class="hidden w-full h-full absolute left-0 top-0 bg-[#3A3A3A] bg-opacity-70 transition-all ease-out group-hover:flex items-center justify-center flex-col">
                             <div class="bg-white m-3 md:m-8 p-2 rounded-md text-xs text-center">
