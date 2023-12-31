@@ -27,25 +27,25 @@
             <h4 class="font-medium text-lg text-brown_B500">Links</h4>
             <ul class="space-y-6 mt-2">
                 <li class="font-medium text-base">
-                    <a href="#">Home</a>
+                    <a href="#home">Home</a>
                 </li>
                 <li class="font-medium text-base">
-                    <a href="#">Best Product</a>
+                    <a href="#best-seller">Best Seller</a>
                 </li>
                 <li class="font-medium text-base">
-                    <a href="#">Menu</a>
+                    <a href="#menu">Menu</a>
                 </li>
                 <li class="font-medium text-base">
-                    <a href="#">About brand</a>
+                    <a href="#about-brand">About brand</a>
                 </li>
                 <li class="font-medium text-base">
-                    <a href="#">History</a>
+                    <a href="#history">History</a>
                 </li>
                 <li class="font-medium text-base">
-                    <a href="#">Testimoni</a>
+                    <a href="#testimoni">Testimoni</a>
                 </li>
                 <li class="font-medium text-base">
-                    <a href="#">Contact Us</a>
+                    <a href="#contact-us">Contact Us</a>
                 </li>
             </ul>
         </div>

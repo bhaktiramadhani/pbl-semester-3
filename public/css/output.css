@@ -1389,6 +1389,10 @@ input:checked + .toggle-bg{
   margin-top: 120px;
 }
 
+.mt-6{
+  margin-top: 1.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -3361,11 +3365,6 @@ input:checked + .toggle-bg{
   padding-right: 2rem;
 }
 
-.px-\[100px\]{
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
 .py-1{
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -4324,6 +4323,14 @@ body {
   outline-offset: 2px;
 }
 
+.focus\:outline:focus{
+  outline-style: solid;
+}
+
+.focus\:outline-brown:focus{
+  outline-color: #D7AB75;
+}
+
 .focus\:ring-0:focus{
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -4685,20 +4692,8 @@ body {
 }
 
 @media (min-width: 768px){
-  .md\:sticky{
-    position: sticky;
-  }
-
   .md\:inset-0{
     inset: 0px;
-  }
-
-  .md\:top-0{
-    top: 0px;
-  }
-
-  .md\:z-50{
-    z-index: 50;
   }
 
   .md\:order-none{

@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="#">
+                    <a href="https://www.instagram.com/chemaraya_rotibakar/" target="_blank">
                         <img src="images/2.png" alt="2">
                     </a>
                 </div>
@@ -24,9 +24,9 @@
 
 
 </section>
-<section id="best-product" class="scroll-mt-20">
+<section id="best-seller" class="scroll-mt-20">
     <div class="py-12 text-[32px] text-center mx-5 lg:mx-[100px] xl:max-w-6xl xl:mx-auto">
-        <h2 class="text-3xl md:text-[32px] font-bold">Best Product</h2>
+        <h2 class="text-3xl md:text-[32px] font-bold my-10">Best Seller</h2>
         <div class="mt-8 flex flex-wrap-reverse justify-center w-full lg:mx-auto gap-y-5">
             <!-- best 2 -->
             <div class="my-1 px-2 w-1/2 md:w-1/3 lg:my-4 lg:px-4 space-y-3" data-aos="fade-up" data-aos-duration="2000">
@@ -232,7 +232,7 @@
 
         <form action="">
             <div class="p-6 bg-white rounded-lg w-auto flex flex-col gap-[18px]" data-aos="fade-left" data-aos-duration="2000">
-                <input type="nama" id="nama" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full p-2.5" placeholder="Nama" required>
+                <input type="nama" id="nama" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full p-2.5 focus:outline" placeholder="Nama" required>
                 <span class="flex flex-wrap lg:flex-nowrap gap-2">
                     <input type="email" id="email" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full lg:w-2/3 p-2.5" placeholder="Email kamu" required>
                     <input type="tel" id="tel" class="bg-transparent border border-brown_B500 text-brown_B500 text-base rounded-lg block w-full lg:w-1/3 p-2.5" placeholder="Nomor Telepon" required>

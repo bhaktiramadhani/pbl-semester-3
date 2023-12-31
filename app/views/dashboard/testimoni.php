@@ -71,6 +71,15 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="space-x-2 mt-6">
+                            <span>Tampilkan</span>
+                            <select id="tampil" class="p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

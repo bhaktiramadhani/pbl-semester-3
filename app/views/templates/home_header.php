@@ -17,7 +17,7 @@
                         <a href="#home" class="block bg-white py-1 px-4 rounded-lg  text-brown_B800">Home</a>
                     </li>
                     <li>
-                        <a href="#best-product" class="block bg-white py-1 px-4 rounded-lg  text-brown_B800">Best Product</a>
+                        <a href="#best-seller" class="block bg-white py-1 px-4 rounded-lg  text-brown_B800">Best Seller</a>
                     </li>
                     <li>
                         <a href="#menu" class="block bg-white py-1 px-4 rounded-lg text-brown_B800">Menu</a>
