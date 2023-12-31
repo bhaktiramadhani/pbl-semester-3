@@ -1,4 +1,4 @@
-<section id="breadcrumb" class="md:sticky md:top-0 md:z-50">
+<section id="breadcrumb" class="sticky top-0 z-50">
     <div class=" bg-brown_B300 px-4 md:px-[100px] py-6 flex flex-wrap justify-between items-center gap-4">
         <nav class="z-10 flex text-base font-medium mt-2" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">

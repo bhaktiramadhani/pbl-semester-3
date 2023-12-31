@@ -9,16 +9,16 @@
                     Banjarmasin Utara</p>
             </div>
             <div class="flex gap-3">
-                <a href="#">
+                <a href="https://www.instagram.com/chemaraya_rotibakar/" target="_blank">
                     <img src="<?= BASEURL; ?>/images/logo/ig-logo.svg" alt="instagram logo">
                 </a>
                 <a href="#">
                     <img src="<?= BASEURL; ?>/images/logo/wa-logo.svg" alt="whatsapp logo">
                 </a>
-                <a href="#">
+                <a href="https://gofood.link/a/CoXuchY" target="_blank">
                     <img src="<?= BASEURL; ?>/images/logo/gofood-logo.svg" alt="gofood logo">
                 </a>
-                <a href="#">
+                <a href="https://food.grab.com/id/id/restaurant/chemaraya-roti-bakar-bandung-sungai-miai-delivery/6-C2LURBJJCUDFTA?">
                     <img src="<?= BASEURL; ?>/images/logo/grabfood-logo.svg" alt="grabfood logo">
                 </a>
             </div>

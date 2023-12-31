@@ -4,13 +4,19 @@
         <div class="swiper carouselSwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="images/1.png" alt="1">
+                    <a href="<?= BASEURL ?>/products">
+                        <img src="images/1.png" alt="1">
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <img src="images/2.png" alt="2">
+                    <a href="#">
+                        <img src="images/2.png" alt="2">
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <img src="images/3.png" alt="3">
+                    <a href="#">
+                        <img src="images/3.png" alt="3">
+                    </a>
                 </div>
             </div>
         </div>
@@ -69,17 +75,24 @@
 
                 <!-- Dropdown menu -->
                 <div id="dropdownDefaultCheckbox" class="z-50 hidden w-auto bg-brown_B700 divide-y divide-gray-100 rounded-lg shadow">
-                    <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200 w-auto" aria-labelledby="dropdownCheckboxButton">
-                        <?php foreach ($data['categorys'] as $category) : ?>
-                            <li>
-                                <div class="flex items-center">
-                                    <input id="checkbox-item-<?= $category['id_category'] ?>" type="checkbox" value="" class="w-4 h-4 text-black bg-transparent border border-white rounded focus:outline-none focus:border-none">
-                                    <label for="checkbox-item-<?= $category['id_category'] ?>" class="ms-2 text-sm font-medium text-white"><?= $category['category_name'] ?></label>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-
-                    </ul>
+                    <form id="filterForm" action="" method="POST">
+                        <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200 w-auto" aria-labelledby="dropdownCheckboxButton">
+                            <?php foreach ($data['categorys'] as $category) : ?>
+                                <li>
+                                    <div class="flex items-center">
+                                        <?php if (isset($data['filter_kategori'])) {
+                                            $isChecked = in_array($category['id_category'], $data['filter_kategori']);
+                                        } else {
+                                            $isChecked = false;
+                                        }
+                                        ?>
+                                        <input id="checkbox-item-<?= $category['id_category'] ?>" name="categories[]" type="checkbox" value="<?= $category['id_category'] ?>" class="w-4 h-4 text-black bg-transparent border border-white rounded focus:outline-none focus:border-none" <?= $isChecked ? 'checked' : '' ?>>
+                                        <label for="checkbox-item-<?= $category['id_category'] ?>" class="ms-2 text-sm font-medium text-white"><?= $category['category_name'] ?></label>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </form>
                 </div>
 
             </div>
@@ -241,13 +254,20 @@
         $('#navbar-default ul li').on('click', function() {
             $('#navbar-default').addClass('hidden');
         })
-        $('.login-button').on('click', function() {
-            Swal.fire({
-                title: `Menuju Halaman Login`,
-                text: 'Perhatian!! halaman ini hanya untuk admin!',
-                icon: "warning",
-            }).then((result) => {
-                document.location.href = "<?= BASEURL; ?>/login";
+
+        $('input[name="categories[]"]').change(function() {
+            var selectedCategories = $('input[name="categories[]"]:checked').map(function() {
+                return this.value;
+            }).get();
+            $.ajax({
+                type: 'POST',
+                url: '<?= BASEURL; ?>/products/ubahFilterKategori', // Ganti dengan URL yang sesuai
+                data: {
+                    filter_kategori: selectedCategories
+                },
+                success: function(data) {
+                    window.location.reload();
+                }
             });
         })
     })

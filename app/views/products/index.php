@@ -23,8 +23,8 @@
     </div>
 </section>
 
-<section id="filter" class="md:sticky md:top-0 md:z-50">
-    <div class=" bg-brown_B300 px-[100px] py-6 flex flex-wrap justify-between items-center gap-4">
+<section id="filter" class="sticky top-0 z-50">
+    <div class=" bg-brown_B300 px-10 md:px-[100px] py-6 flex flex-wrap justify-between items-center gap-4">
         <p class="text-center sm:text-start">Showing <?= $data['awal_data'] + 1 ?>–<?= ($data['awal_data']) + $data['jumlah_data_perhalaman'] ?> of <?= $data['jumlah_data'] ?> results</p>
         <div class="flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-7">
             <div class="space-x-2 md:space-x-4">
@@ -41,7 +41,7 @@
             </div>
             <div class="sm:space-x-4">
                 <label for="short">Short By</label>
-                <input name="short" id="short" type="text" placeholder="Cari" value="" class="w-44 h-14 border-none">
+                <input name="short" id="short" type="text" placeholder="Cari" value="<?= $data['cari'] ?>" class="w-44 h-14 border-none" autofocus>
             </div>
         </div>
     </div>
@@ -64,7 +64,13 @@
                         <?php foreach ($data['categorys'] as $category) : ?>
                             <li>
                                 <div class="flex items-center">
-                                    <input id="checkbox-item-<?= $category['id_category'] ?>" type="checkbox" value="" class="w-4 h-4 text-black bg-transparent border border-white rounded focus:outline-none focus:border-none">
+                                    <?php if (isset($data['filter_kategori'])) {
+                                        $isChecked = in_array($category['id_category'], $data['filter_kategori']);
+                                    } else {
+                                        $isChecked = false;
+                                    }
+                                    ?>
+                                    <input id="checkbox-item-<?= $category['id_category'] ?>" name="categories[]" type="checkbox" value="<?= $category['id_category'] ?>" class="w-4 h-4 text-black bg-transparent border border-white rounded focus:outline-none focus:border-none" <?= $isChecked ? 'checked' : '' ?>>
                                     <label for="checkbox-item-<?= $category['id_category'] ?>" class="ms-2 text-sm font-medium text-white"><?= $category['category_name'] ?></label>
                                 </div>
                             </li>
@@ -107,7 +113,7 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        <div class="flex flex-wrap gap-3 justify-center self-center mx-2 mb-6">
+        <div class="flex flex-wrap gap-3 justify-center self-center mx-2 mb-6 text-white">
             <?php if ($data['halaman'] > 1) : ?>
                 <a href="<?= BASEURL; ?>/products/halaman/<?= $data['halaman'] - 1 ?>" class="py-4 px-7 rounded-[10px] bg-brown_B300">&lt;</a>
             <?php endif; ?>
@@ -135,6 +141,39 @@
                     window.location.reload();
                 }
             })
+        })
+
+        $('#short').keypress(function(event) {
+            if (event.key == "Enter") {
+                const value = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url: "<?= BASEURL; ?>/products/ubahCari",
+                    data: {
+                        'cari': value
+                    },
+                    success: function() {
+                        window.location.reload();
+                    }
+                })
+            }
+        })
+
+
+        $('input[name="categories[]"]').change(function() {
+            var selectedCategories = $('input[name="categories[]"]:checked').map(function() {
+                return this.value;
+            }).get();
+            $.ajax({
+                type: 'POST',
+                url: '<?= BASEURL; ?>/products/ubahFilterKategori', // Ganti dengan URL yang sesuai
+                data: {
+                    filter_kategori: selectedCategories
+                },
+                success: function(data) {
+                    window.location.reload();
+                }
+            });
         })
     })
 </script>

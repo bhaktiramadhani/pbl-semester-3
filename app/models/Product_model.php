@@ -18,12 +18,28 @@ class Product_model
         return $this->db->resultSet();
     }
 
-    public function getAllProductByLimit($limit)
+    public function getAllProductByLimitAndLike($limit, $field, $keyword)
     {
-        $this->db->query("SELECT products.*, category.category_name
+        $tampungan = [];
+        if (is_array($keyword)) {
+            foreach ($keyword as $array) {
+                $tampungan[] = "$field LIKE '%$array%'";
+            }
+            $tampungan = implode(' OR ', $tampungan);
+        } else {
+            $tampungan = "$field LIKE '%$keyword%'";
+        }
+        if ($keyword == '') {
+            $this->db->query("SELECT products.*, category.category_name
                             FROM $this->table
                             JOIN category on products.id_category = category.id_category
                             LIMIT $limit");
+        } else {
+            $this->db->query("SELECT products.*, category.category_name
+                            FROM $this->table
+                            JOIN category on products.id_category = category.id_category WHERE $tampungan 
+                            LIMIT $limit");
+        }
         return $this->db->resultSet();
     }
 

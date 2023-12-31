@@ -1337,10 +1337,6 @@ input:checked + .toggle-bg{
   margin-left: 1.75rem;
 }
 
-.ml-\[13px\]{
-  margin-left: 13px;
-}
-
 .ms-1{
   margin-inline-start: 0.25rem;
 }
@@ -1391,10 +1387,6 @@ input:checked + .toggle-bg{
 
 .mt-\[120px\]{
   margin-top: 120px;
-}
-
-.mt-6{
-  margin-top: 1.5rem;
 }
 
 .box-border{
@@ -1590,10 +1582,6 @@ input:checked + .toggle-bg{
 
 .h-full{
   height: 100%;
-}
-
-.h-px{
-  height: 1px;
 }
 
 .h-screen{
@@ -3373,6 +3361,11 @@ input:checked + .toggle-bg{
   padding-right: 2rem;
 }
 
+.px-\[100px\]{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .py-1{
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -3438,11 +3431,6 @@ input:checked + .toggle-bg{
   padding-bottom: 76px;
 }
 
-.px-\[100px\]{
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
 .pb-12{
   padding-bottom: 3rem;
 }
@@ -3465,6 +3453,10 @@ input:checked + .toggle-bg{
 
 .pl-8{
   padding-left: 2rem;
+}
+
+.pl-\[13px\]{
+  padding-left: 13px;
 }
 
 .ps-3{
@@ -3493,10 +3485,6 @@ input:checked + .toggle-bg{
 
 .pt-\[14px\]{
   padding-top: 14px;
-}
-
-.pl-\[13px\]{
-  padding-left: 13px;
 }
 
 .text-left{
@@ -4634,10 +4622,6 @@ body {
     margin-top: 1.5rem;
   }
 
-  .sm\:mt-0{
-    margin-top: 0px;
-  }
-
   .sm\:hidden{
     display: none;
   }
@@ -4671,24 +4655,8 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sm\:flex-nowrap{
-    flex-wrap: nowrap;
-  }
-
-  .sm\:items-center{
-    align-items: center;
-  }
-
   .sm\:gap-6{
     gap: 1.5rem;
-  }
-
-  .sm\:gap-7{
-    gap: 1.75rem;
-  }
-
-  .sm\:gap-3{
-    gap: 0.75rem;
   }
 
   .sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){
@@ -4785,14 +4753,6 @@ body {
     width: auto;
   }
 
-  .md\:w-3\/4{
-    width: 75%;
-  }
-
-  .md\:w-1\/4{
-    width: 25%;
-  }
-
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -4803,18 +4763,6 @@ body {
 
   .md\:flex-nowrap{
     flex-wrap: nowrap;
-  }
-
-  .md\:items-center{
-    align-items: center;
-  }
-
-  .md\:items-baseline{
-    align-items: baseline;
-  }
-
-  .md\:justify-normal{
-    justify-content: normal;
   }
 
   .md\:gap-32{
